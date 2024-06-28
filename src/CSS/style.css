@@ -1,0 +1,120 @@
+/*****************************************HEADER
+/**********************************************
+/*********************************************/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+.invisible {
+  display: none;
+}
+/* Liste regions */
+.region_list {
+  border: 1px solid blue;
+  margin: auto;
+}
+
+.region_list ul {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  flex-wrap: wrap;
+}
+.region_list ul li {
+  width: 10em;
+  list-style-type: none;
+}
+/* Style du block d'annonce du haut de page pour la version mobile */
+#ad_list {
+  overflow-x: scroll; /* Permet le défilement horizontal sur mobile */
+  white-space: nowrap; /* Évite le retour à la ligne */
+  -webkit-overflow-scrolling: touch; /* Améliore le défilement sur iOS */
+}
+/* Annonces du haut de page */
+.ad {
+  border: 1px solid blue;
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  white-space: normal;
+  padding: 10px;
+  box-sizing: border-box;
+}
+/*Annonce visible quand click sur carte*/
+.popupAdClicked {
+  display: none;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* Z-index élevé pour que la popup soit au-dessus de la carte */
+}
+
+/* Formulaire register */
+.registration-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.registration-form div {
+  margin-bottom: 10px;
+}
+
+.registration-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="password"],
+.registration-form input[type="tel"],
+.registration-form input[type="submit"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.registration-form input[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.registration-form input[type="submit"]:hover {
+  background-color: #45a049;
+}
+/* Media Query pour tablette et desktop */
+@media (min-width: 768px) {
+  .ad {
+    width: calc(
+      100% / 5 - 20px
+    ); /* Taille des annonces pour 5 annonces par ligne */
+    margin-right: 20px; /* Marge droite des annonces */
+    margin-bottom: 20px; /* Marge en bas des annonces */
+  }
+}

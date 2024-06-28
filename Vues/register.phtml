@@ -1,0 +1,26 @@
+<form action="" method="POST" class="registration-form">
+<?php if (isset($_SESSION['success_message'])): ?>
+        <p class="success-message"><?php echo $_SESSION['success_message']; ?></p>
+        <?php unset($_SESSION['success_message']); // Effacer le message après l'affichage ?>
+    <?php endif; ?>
+    <div>
+        <label for="name">Surnom :</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <label for="phone">Téléphone :</label>
+        <input type="tel" id="phone" name="phone" required>
+    </div>
+
+    <!-- Champs avec valeurs par défaut -->
+    <input type="hidden" name="role" value="user">
+    <input type="hidden" name="signup_date" value="<?php echo date('Y-m-d H:i:s'); ?>">
+    <?php require 'location.phtml' ?>
+    <div>
+        <input type="submit" name="confirm_registration" value="Valider">
+    </div>
+</form>

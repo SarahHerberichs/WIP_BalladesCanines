@@ -1,0 +1,18 @@
+<div class="login-form">
+  <div id="statusOffline"></div>
+  <h2>Login</h2>
+  <span class="sendSuccess"><?= $userMessages['sendSuccess'] ?></span>
+  <form method="post" id="formLogin">
+    <label for="inputLogin">Login
+      <span class="errorMessage"><?= $userMessages['requiredLogin'] ?></span>
+    </label>
+    <input name="login" id="inputLogin" type="text"/>
+
+    <label for="inputPassword">Password
+      <span class="errorMessage"><?= $userMessages['requiredPassword'] ?></span>
+    </label>
+    <input name="password" id="inputPassword" type="password" />
+
+    <input type="submit" name="accountSubmit" value="GO" />
+  </form>
+</div>

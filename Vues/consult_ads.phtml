@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte interactive avec Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { /* Style pour le conteneur de la carte */
+            height: 600px;
+            z-index:1;
+        }
+    </style>
+</head>
+<body>
+    <p href="#" class='post_ad_link'>Poster Annonce</p>
+    <div class="post_ad_box invisible">
+    <?php require __DIR__ . '/../Controllers/post_ad_ctrl.php'; ?>    </div>
+    <h2>Prochaines ballades</h2>
+    <div id='ad_list'>
+        <?php
+            $count = 0;
+            foreach($adList as $ad) :
+                // Limiter à 10 annonces
+                if ($count >= 10) {
+                    break; // Sortir de la boucle foreach si on a atteint 10 annonces
+                }
+                ?>
+                <div class="ad">
+                    
+                    <h3><?= $ad->getTitle() ?></h3>
+                    <p>Date : <?= $ad->getDate()->format('d-m-Y') ?></p>
+                    <p> <?= $ad->getText() ?> </p>
+                    <p> <?= $ad->getCityId() ?> </p>
+                    <p> Longitude : <?= $ad->getLongitude() ?> </p>
+                    <p> Latitude :  <?= $ad->getLatitude() ?> </p>
+            <!--Pour traitement JS, si click sur une des regions plus bas, affichage de tte les ad regionsId associé a cet id -->
+                    <p> Region : <?= $ad->getRegionId() ?></p>
+                </div>
+            <?php
+            // Incrémenter le compteur
+            $count++;
+            endforeach;
+        ?>
+          
+    </div>
+    <div class="region_list">
+        <ul>
+        <?php foreach($regions as $region) : ?>
+            <li class="region_btn" data-region-id="<?= $region->getID() ?>"><?= $region->getName() ?></li>
+        <?php
+        endforeach ?>
+
+        </ul>
+       
+    </div>
+    <div class='selected_ad_popup invisible'>Add invisible?</div>
+    <div id="map"></div> <!-- Conteneur pour la carte -->
+    <div class="popupAdClicked">
+        <button class='closeBtn'>Close</button>
+        <h3 class = "titleAdClicked"></h3>
+        <p class = "textAdClicked"></p>
+        <p class = "cityAdClicked"></p>
+    </div>
+    <script>
+        //array_map parcours chaque element et leur applique cette fonction de rappel qui transforme chaque objet en un tabAss
+        var adData = <?= json_encode(array_map(function($ad) {
+            return [
+                'id' => $ad->getId(),
+                'title' => $ad->getTitle(),
+                'latitude' => $ad->getLatitude(),
+                'longitude' => $ad->getLongitude(),
+                'date' => $ad->getDate(),
+                'text' => $ad->getText(),
+                'region'=> $ad->getRegionId()
+            ];
+        }, $adList)); ?>;
+    </script>
+    <!-- Inclure Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../src/JS/index.js"></script> <!-- Fichier JavaScript pour l'initialisation de la carte -->
+</body>
+</html>

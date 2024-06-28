@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BalladesCanines</title>
+    <link rel="stylesheet" href="src/CSS/style.css">
+    <link rel="stylesheet" href="src/CSS/menuBurger.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="src/JS/menuBurger.js" defer></script>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="boutonBurger">
+            <span class="span1"></span>
+            <span class="span2"></span>
+            <span class="span3"></span>
+        </div>
+        <div class="menuBurger">
+            <a href="?page=home" class="elt">Accueil</a>
+            <a href="?page=consult_ads" class="elt">Annonces Ballades</a>
+            <a href="?page=consult_parcs" class ="elt"> Parcs </a>
+            <a href="?page=register" class="elt">Register </a>
+            <a href='?page=login' class='elt'>Login</a>
+        </div>
+
+        <section id="accueil">
+            <h1>Ballades Canines</h1>
+        </section>
+        <?php if (isset($_SESSION['User']) && !empty($_SESSION['User']['name'])) { ?>
+            <p>Bonjour, <?php echo htmlspecialchars($_SESSION['User']['name']); ?> !</p>
+        <?php } ?>
+    <main>
+        <?php require 'router.php' ?>
+    </main>
+</body>
+</html>
+

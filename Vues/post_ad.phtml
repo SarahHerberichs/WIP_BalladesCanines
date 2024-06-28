@@ -1,0 +1,22 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/CSS/postAd.css">
+    <title>Create Ad</title>
+</head>
+<body>
+<!-- Structure HTML pour la popup -->
+<div class="popup">
+    <form action="" method="POST" class="form_post_ad">
+        <input type="text" name="title" placeholder="Titre de l'annonce" required>
+        <input type="date" name="date" placeholder="Date de l'annonce" required>
+        <textarea name="text" placeholder="Texte de l'annonce" rows="4" required></textarea>
+     
+       <?php require 'location.phtml' ?>
+        <input type="submit" name="post_ad" value="Ajouter l'annonce">
+    </form>
+    
+</div>
+
+</body>
