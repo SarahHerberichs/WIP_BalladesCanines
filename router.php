@@ -15,9 +15,9 @@ $page = isset ($_GET['page'])? $_GET['page'] : 'home';
         case 'consult_walks':
             require 'Controllers/consult_walks_ctrl.php';
             break;
-        case 'consult_randos':
-            require 'Controllers/consult_randos_ctrl.php';
-            break;
+        // case 'consult_randos':
+        //     require 'Controllers/consult_randos_ctrl.php';
+        //     break;
         case 'register':
             require 'Controllers/register_ctrl.php';
             break;

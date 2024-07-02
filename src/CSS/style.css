@@ -19,11 +19,11 @@ main {
 /*Map leaflet */
 #map {
   /* Style pour le conteneur de la carte */
-  height: 400px; /* Hauteur de la carte, ajustez selon vos besoins */
-  width: 80%; /* Largeur de la carte, ajustée pour rester centrée et proportionnelle */
-  max-width: 1200px; /* Largeur maximale de la carte pour éviter qu'elle ne soit trop grande */
-  margin: 20px auto; /* Marge pour centrer la carte horizontalement et ajouter de l'espace autour */
-  z-index: 1; /* Assurez-vous que la carte est au-dessus des autres éléments si nécessaire */
+  height: 400px;
+  width: 80%;
+  max-width: 1200px;
+  margin: 20px auto;
+  z-index: 1;
 }
 .text-center {
   text-align: center;
@@ -88,10 +88,10 @@ main {
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 250px; /* Largeur fixe pour chaque annonce */
-  margin-right: 20px; /* Marge à droite pour l'espacement entre les annonces */
-  flex-shrink: 0; /* Empêche le rétrécissement des annonces dans le conteneur flex */
-  transition: transform 0.3s ease; /* Animation de transition */
+  width: 250px;
+  margin-right: 20px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
 
 .walk:hover {
@@ -101,31 +101,31 @@ main {
 .walk h3 {
   font-size: 1.2em;
   margin-bottom: 10px;
-  white-space: nowrap; /* Empêcher le retour à la ligne du titre */
-  overflow: hidden; /* Masquer le débordement du titre */
-  text-overflow: ellipsis; /* Afficher des points de suspension si le titre est trop long */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .walk p {
   font-size: 0.9em;
   margin-bottom: 5px;
-  max-height: 4.5em; /* Limiter la hauteur du paragraphe */
-  overflow: hidden; /* Masquer le débordement du paragraphe */
-  text-overflow: ellipsis; /* Afficher des points de suspension si le paragraphe est trop long */
+  max-height: 4.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Conteneur des annonces */
 #walk_list {
   display: flex;
-  overflow-x: auto; /* Défilement horizontal */
-  padding: 10px; /* Espacement intérieur */
-  gap: 20px; /* Espacement entre les annonces */
-  scroll-snap-type: x mandatory; /* Défilement en sautant d'une annonce à l'autre */
+  overflow-x: auto;
+  padding: 10px;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
 }
 
 /* Annonces individuelles */
 .walk {
-  scroll-snap-align: start; /* Alignement au début de chaque annonce */
+  scroll-snap-align: start;
 }
 /*Annonce visible quand click sur carte*/
 .popup_walkClicked {
@@ -137,14 +137,14 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000; /* Z-index élevé pour que la popup soit au-dessus de la carte */
+  z-index: 1000;
 }
 /* location, div remplissage des dpts */
 .autocomplete-results {
-  max-height: 20vh; /* 50% de la hauteur de la viewport */
-  overflow-y: auto; /* Ajoute une barre de défilement verticale si nécessaire */
-  border: 1px solid #ccc; /* Optionnel : bordure pour délimiter visuellement la zone */
-  padding: 10px; /* Optionnel : espace intérieur */
+  max-height: 20vh;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
 /* Formulaire register */

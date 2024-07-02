@@ -71,7 +71,7 @@ class WalkRepository {
             INNER JOIN departments d ON d.department_number = c.department_number
             INNER JOIN regions r ON r.region_id = d.region_id
             where r.region_id = :regionId
-            ORDER BY a.date 
+            ORDER BY w.date 
         ');
         $stmt->bindValue('regionId', $region_id);
         $stmt->execute();

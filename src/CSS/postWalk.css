@@ -1,16 +1,16 @@
 /* CSS pour la popup */
 .popup {
   position: fixed;
-  top: 50%; /* Centrer verticalement */
-  left: 50%; /* Centrer horizontalement */
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  width: 80%; /* Largeur de la popup */
-  max-width: 600px; /* Largeur maximale */
+  width: 80%;
+  max-width: 600px;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Ombre douce */
-  z-index: 1000; /* Assurer que la popup est au-dessus des autres éléments */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 /* Style pour le formulaire */

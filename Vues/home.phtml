@@ -53,7 +53,7 @@
         //Pour accès Format Json au traitement JS 
         var walkData = <?= json_encode(array_map(function($walk) {
             return [
-                'id' => $walk->getId(),
+                'id' => $walk->getWalkId(),
                 'title' => $walk->getTitle(),
                 'latitude' => $walk->getLatitude(),
                 'longitude' => $walk->getLongitude(),

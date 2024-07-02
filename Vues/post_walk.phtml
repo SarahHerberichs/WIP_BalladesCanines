@@ -7,12 +7,13 @@
 </head>
 <body>
 <div class="popup">
+    <button class='btn-close' >close</button>
     <?php if (isset($_SESSION['User']) && !empty($_SESSION['User'])): ?>
     <form action="" method="POST" class="form_post_walk">
         <input type="text" name="title" placeholder="Titre de l'annonce" required>
         <input type="date" id="date" name="date" placeholder="Date de l'annonce" required>
         <textarea name="text" placeholder="Texte de l'annonce" rows="4" required></textarea>
-     
+        
        <?php require 'location.phtml' ?>
         <input type="submit" name="post_walk" value="Ajouter l'annonce">
     </form>

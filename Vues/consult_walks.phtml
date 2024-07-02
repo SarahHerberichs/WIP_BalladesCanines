@@ -65,7 +65,7 @@
         //array_map parcours chaque element et leur applique cette fonction de rappel qui transforme chaque objet en un tabAss
         var walkData = <?= json_encode(array_map(function($walk) {
             return [
-                'id' => $walk->getId(),
+                'id' => $walk->getWalkId(),
                 'title' => $walk->getTitle(),
                 'latitude' => $walk->getLatitude(),
                 'longitude' => $walk->getLongitude(),
@@ -75,6 +75,7 @@
             ];
         }, $walkList)); ?>;
     </script>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="../src/JS/index.js"></script> <!-- Fichier JavaScript pour l'initialisation de la carte -->
 </body>
