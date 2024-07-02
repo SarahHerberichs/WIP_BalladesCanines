@@ -4,12 +4,16 @@
         <?php unset($_SESSION['success_message']); // Effacer le message après l'affichage ?>
     <?php endif; ?>
     <div>
-        <label for="name">Surnom :</label>
-        <input type="text" id="name" name="name" required>
+        <label for="email">Email : </label>
+        <input type="mail" id='email' name ='email'>
     </div>
     <div>
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <label for="name">Surnom :</label>
+        <input type="text" id="name" name="name" required>
     </div>
     <div>
         <label for="phone">Téléphone :</label>

@@ -9,14 +9,14 @@ $page = isset ($_GET['page'])? $_GET['page'] : 'home';
         case 'import_location':
             require 'Controllers/import_location_ctrl.php';
             break;
-        case 'create_ad':
-            require 'Controllers/post_ad_ctrl.php';
+        case 'create_walk':
+            require 'Controllers/post_walk_ctrl.php';
             break;
-        case 'consult_ads':
-            require 'Controllers/consult_ads_ctrl.php';
+        case 'consult_walks':
+            require 'Controllers/consult_walks_ctrl.php';
             break;
-        case 'consult_parcs':
-            require 'Controllers/consult_parcs_ctrl.php';
+        case 'consult_randos':
+            require 'Controllers/consult_randos_ctrl.php';
             break;
         case 'register':
             require 'Controllers/register_ctrl.php';

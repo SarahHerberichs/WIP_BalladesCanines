@@ -1,0 +1,23 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/CSS/postWalk.css">
+    <title>Create Walk</title>
+</head>
+<body>
+<div class="popup">
+    <?php if (isset($_SESSION['User']) && !empty($_SESSION['User'])): ?>
+    <form action="" method="POST" class="form_post_walk">
+        <input type="text" name="title" placeholder="Titre de l'annonce" required>
+        <input type="date" id="date" name="date" placeholder="Date de l'annonce" required>
+        <textarea name="text" placeholder="Texte de l'annonce" rows="4" required></textarea>
+     
+       <?php require 'location.phtml' ?>
+        <input type="submit" name="post_walk" value="Ajouter l'annonce">
+    </form>
+    <?php else: ?>
+        <p> Merci de vous <a href='?page=login'>connecter</a> ou de  <a href='?page=register'>créer un compte</a> </p>
+    <?php endif; ?>
+</div>
+</body>

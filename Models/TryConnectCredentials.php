@@ -18,7 +18,7 @@ class TryConnectCredentials {
       $this->_login = $login;
       return '';
     }
-    return 'Please, insert your login';
+    return 'Please, insert your email';
   }
 
   // Méthode de Verification de l'identité (loggin Réel en parametre) comparé avec login entré

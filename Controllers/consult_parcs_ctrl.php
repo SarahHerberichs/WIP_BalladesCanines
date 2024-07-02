@@ -1,3 +1,3 @@
 <?php
 
-require 'Vues/consult_parcs.phtml';
+require 'Vues/consult_randos.phtml';

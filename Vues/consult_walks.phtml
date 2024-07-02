@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte interactive avec Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { /* Style pour le conteneur de la carte */
+            height: 600px;
+            z-index:1;
+        }
+    </style>
+<body>
+    <a href="#" class='post_walk_link'>Proposer un RDV</a>
+    <div class="post_walk_box invisible">
+    <?php require __DIR__ . '/../Controllers/post_walk_ctrl.php'; ?>    </div>
+    <h3>Les prochains RDV</h3>
+    <div id='walk_list'>
+        <?php
+        //Dates les plus proches
+        // usort($walkList, function($a, $b) {
+        //     return $a->getDate() <=> $b->getDate();
+        // });
+            $count = 0;
+            foreach($walkList as $walk) :
+                // Limite à 10 annonces
+                if ($count >= 10) {
+                    break; 
+                }
+                ?>
+                <div class="walk">
+                    
+                    <h3><?= $walk->getTitle() ?></h3>
+                    <p>Date : <?= $walk->getDate()->format('d-m-Y') ?></p>
+                    <p> <?= $walk->getText() ?> </p>
+                    <p> <?= $walk->getCityId() ?> </p>
+                    <p> Ville : <?= $walk->getCityName() ?> </p>
+                </div>
+            <?php
+            $count++;
+            endforeach;
+        ?>
+          
+    </div>
+    <div class="region_list">
+        <ul>
+        <?php foreach($regions as $region) : ?>
+            <li class="region_btn" data-region-id="<?= $region->getID() ?>"><?= $region->getName() ?></li>
+        <?php
+        endforeach ?>
+        </ul>
+    </div>
+
+    <div class='selected_walk_popup invisible'>Add invisible?</div>
+    
+    <div id="map"></div> <!-- Conteneur pour la carte -->
+    <div class="popup_walkClicked">
+        <button class='closeBtn'>Close</button>
+        <h3 class = "title_walkClicked"></h3>
+        <p class = "text_walkClicked"></p>
+        <p class = "city_walkClicked"></p>
+    </div>
+    <script>
+        //array_map parcours chaque element et leur applique cette fonction de rappel qui transforme chaque objet en un tabAss
+        var walkData = <?= json_encode(array_map(function($walk) {
+            return [
+                'id' => $walk->getId(),
+                'title' => $walk->getTitle(),
+                'latitude' => $walk->getLatitude(),
+                'longitude' => $walk->getLongitude(),
+                'date' => $walk->getDate(),
+                'text' => $walk->getText(),
+                'region'=> $walk->getRegionId()
+            ];
+        }, $walkList)); ?>;
+    </script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../src/JS/index.js"></script> <!-- Fichier JavaScript pour l'initialisation de la carte -->
+</body>
+</html>

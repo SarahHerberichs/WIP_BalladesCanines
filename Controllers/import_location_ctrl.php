@@ -1,13 +1,11 @@
-<?php
+<!-- <?php
 
-$locationRepo = new LocationRepository();
+// $locationRepo = new LocationRepository();
 
-if (isset($_POST['import_locations']) ){
-
-        $locationRepo->insertLocations();
-
-}
+// if (isset($_POST['import_locations']) ){
+//         $locationRepo->insertLocations();
+// }
 
 
-require 'Vues/import_location.phtml';
-?>
+// require 'Vues/import_location.phtml';
+?> -->

@@ -7,6 +7,7 @@ $userMessages = [
     'sendSuccess' => '',
     'requiredLogin' => '',
     'requiredPassword' => '',
+    'loginError' => '',
 ];
 
 // Si le formulaire est soumis : 
@@ -18,31 +19,31 @@ if (isset($_POST['accountSubmit'])) {
 
     // Si champs erreur vides
     if (empty($userMessages['requiredLogin']) && empty($userMessages['requiredPassword'])) {
-        $userRepo = new UserRepository;
-        // Méthode Recup identifiants réels
-        $userLog = $userRepo->retrieveLoginDatas($_POST['login']);
-        // Si méthode aboutit
-        if ($userLog) {
-            // Vérification du mot de passe avec password_verify
-            if (password_verify($TryConnectCredentials->getPassword(), $userLog->getPassword())) {
-         
-                $_SESSION['User'] = [
-                    'id' => $userLog->getId(),
-                    'name' => $userLog->getName(),
-                ];
-                header('Location:?page=home');
-                exit();
-            } else {          
-                echo 'Invalid password';
-                header('Location:?page=login');
-                exit();
+        $userRepo = new UserRepository();
+        try {
+            // Méthode Recup identifiants réels
+            $userLog = $userRepo->retrieveLoginDatas($_POST['login']);
+
+            // Si méthode aboutit
+            if ($userLog) {
+                // Vérification du mot de passe avec password_verify
+                if (password_verify($TryConnectCredentials->getPassword(), $userLog->getPassword())) {
+                    $_SESSION['User'] = [
+                        'id' => $userLog->getId(),
+                        'name' => $userLog->getName(),
+                    ];
+                    header('Location:?page=home');
+                    exit();
+                } else {          
+                    $userMessages['loginError'] = 'Invalid password';
+                }
             }
-        } else {
-            // Utilisateur non trouvé
-            header('Location:?page=login');
-            exit();
+        } catch (Exception $e) {
+            // Utilisateur non trouvé ou autre erreur
+            $userMessages['loginError'] = $e->getMessage();
         }
     }
 }
 
 require 'Vues/login.phtml';
+?>

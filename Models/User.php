@@ -7,6 +7,7 @@ class User {
     private string $_phone;
     private string $_cityId;
     private string $_role;
+    private string $_email;
     private DateTime $_signUpDate;
 
     public function setId(string $id): void {
@@ -24,6 +25,12 @@ class User {
     public function getName(): string {
         return $this->_name;
     }
+    public function setEmail(string $email) {
+        $this->_email = $email;
+     }
+     public function getEmail() : string {
+        return $this->_email;
+     }
 
     public function setPassword(string $password): void {
         $this->_password = $password;

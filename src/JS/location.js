@@ -1,19 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const citiesJsonUrl = "cities.json"; // Chemin vers votre fichier JSON des villes
+  const citiesJsonUrl = "cities.json";
 
   const departmentSelect = document.getElementById("department");
   const citySearchInput = document.getElementById("citySearch");
   const cityResultsDiv = document.getElementById("cityResults");
   const cityId = document.getElementById("cityId");
 
-  let citiesData = []; // Variable pour stocker les données des villes
+  let citiesData = []; // Stockage des données des villes
 
   // Fonction pour charger les données JSON des villes
   function loadCitiesJson() {
     return fetch(citiesJsonUrl)
       .then((response) => response.json())
       .then((data) => {
-        citiesData = data.cities; // Stocker les données des villes dans la variable citiesData
+        citiesData = data.cities;
         return citiesData;
       })
       .catch((error) => {
@@ -26,11 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function fillDepartments() {
     loadCitiesJson()
       .then((cities) => {
-        // Récupérer tous les départements uniques
         const departmentsSet = new Set(
           cities.map((city) => city.department_name)
         );
-        const sortedDepartments = Array.from(departmentsSet).sort(); // Trier les départements par ordre alphabétique
+        const sortedDepartments = Array.from(departmentsSet).sort();
 
         // Ajouter chaque département trié comme une option dans le select
         sortedDepartments.forEach((department) => {
@@ -47,21 +46,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Fonction pour afficher les résultats de la recherche de villes
   function showCityResults(results) {
-    cityResultsDiv.innerHTML = ""; // Réinitialiser les résultats
+    cityResultsDiv.innerHTML = "";
 
     if (results.length === 0) {
       const noResults = document.createElement("div");
       noResults.textContent = "Aucun résultat trouvé";
       cityResultsDiv.appendChild(noResults);
     } else {
+      cityResultsDiv.classList.add("visible");
       const ul = document.createElement("ul");
 
       results.forEach((city) => {
         const li = document.createElement("li");
         li.textContent = city.label + " - " + city.zip_code;
         li.addEventListener("click", function () {
-          citySearchInput.value = city.label; // Remplir le champ avec le nom de la ville cliquée
-          cityResultsDiv.innerHTML = ""; // Masquer les résultats après sélection
+          citySearchInput.value = city.label;
+          cityResultsDiv.classList.add("invisible");
+          cityResultsDiv.innerHTML = "";
         });
         ul.appendChild(li);
       });
@@ -75,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Écouter le changement dans le select des départements
   departmentSelect.addEventListener("change", function () {
+    citySearchInput.value = "";
     const selectedDepartment = this.value;
     const searchValue = citySearchInput.value.trim().toLowerCase();
 
@@ -100,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Écouter les événements de saisie dans le champ de recherche de ville
   citySearchInput.addEventListener("input", function () {
+    cityResultsDiv.classList.remove("invisible");
     const searchValue = this.value.trim().toLowerCase();
     const selectedDepartment = departmentSelect.value;
 

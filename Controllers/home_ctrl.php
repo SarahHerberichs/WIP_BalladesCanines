@@ -1,7 +1,7 @@
 <?php
-$adRepo = new AdRepository;
-//Affichera la carte contenant les ballades ET les parcs
-$adList = $adRepo->consultAd();
+$walkRepo = new WalkRepository;
+//Affichera la carte contenant les walks ET les parcs
+$walkList = $walkRepo->consultWalks();
 
 require 'Vues/home.phtml'
 

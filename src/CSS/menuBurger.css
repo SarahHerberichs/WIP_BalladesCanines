@@ -2,37 +2,50 @@
 
 html,
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto", sans-serif;
-  --rouge: #c0392b;
-  --orange: #d35400;
-  --jaune: #f39c12;
-  --bleu: #2980b9;
-  --vert: #27ae60;
+  --rouge: #e74c3c;
+  --orange: #e67e22;
+  --jaune: #f1c40f;
+  --bleu: #3498db;
+  --vert: rgba(10, 66, 9, 0.95);
+  --blanc: #ffffff;
+  --gris-clair: #ecf0f1;
+  --gris-fonce: #2c3e50;
+  --translucide: rgba(0, 0, 0, 0.5);
+  --translucide-blanc: rgba(255, 255, 255, 0.5);
 }
-
+body {
+  padding-top: 10vh;
+}
 /* MAIN */
-
+.header {
+  font-family: "Raleway", sans-serif;
+}
 #accueil {
-  height: 10vh;
+  position: fixed;
+  margin-bottom: 12em;
+  top: 0;
+  height: 17vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  background: linear-gradient(
-      225deg,
-      rgba(0, 0, 0, 0.5) 50%,
-      rgba(0, 0, 0, 0.5) 50%
-    ),
-    url("../images/mer.jpg");
+  background: white;
+  background-position: center;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.spacer {
+  width: 100%;
+  height: 50vh;
+  margin-top: 2em;
+  background-image: url("../../Files/images/randonneurs_2.png");
   background-size: cover;
   background-position: center;
-  color: #fff;
 }
-
 #accueil > h1 {
   font-size: 3em;
+  font-weight: 500;
 }
 
 /* BOUTON BURGER */
@@ -41,43 +54,44 @@ body {
   position: fixed;
   top: 20px;
   right: 20px;
-  /* border: 1px solid #000; */
   width: 40px;
   height: 40px;
   cursor: pointer;
   z-index: 25;
+  transition: transform 0.3s ease;
+}
+
+.boutonBurger:hover {
+  transform: scale(1.1);
+}
+
+.span1,
+.span2,
+.span3 {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: black;
+  transition-duration: 0.5s;
 }
 
 .span1 {
-  position: absolute;
   top: 8px;
-  width: 100%;
-  height: 4px;
-  background-color: #fff;
-  transition-duration: 0.5s;
 }
 .span1Open {
   transform: rotate(-45deg);
   top: 16px;
 }
+
 .span2 {
-  position: absolute;
   top: 18px;
-  width: 100%;
-  height: 4px;
-  background-color: #fff;
-  transition-duration: 0.5s;
 }
 .span2Open {
   display: none;
 }
+
 .span3 {
-  position: absolute;
   top: 28px;
-  width: 100%;
-  height: 4px;
-  background-color: #fff;
-  transition-duration: 0.5s;
 }
 .span3Open {
   transform: rotate(45deg);
@@ -92,13 +106,16 @@ body {
   left: -100vw;
   width: 100vw;
   height: 100vh;
-  background-color: #192a56;
-  transition-duration: 0.5s;
+  background: var(--vert);
+  transition: 0.5s;
   z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-left: 3px solid var(--blanc); /* Adding border to the menu */
+  border-radius: 10px; /* Adding rounded corners */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Adding shadow */
 }
 
 .menuBurgerOpen {
@@ -106,13 +123,27 @@ body {
 }
 
 .menuBurger > a {
-  color: #fff;
-  margin: 20px 0 20px 0;
+  color: var(--blanc);
+  margin: 20px 0;
   text-decoration: none;
   font-size: 2em;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
+
+.menuBurger > a:hover {
+  color: var(--jaune-pale);
+}
+
 @media (min-width: 768px) {
   .menuBurger {
-    width: 30vw;
+    right: -100vw;
+    left: auto;
+    border-left: none; /* Removing border on larger screens */
+    border-right: 3px solid var(--blanc); /* Adding border to the right side */
+  }
+  .menuBurgerOpen {
+    right: 0;
+    width: 30%;
   }
 }

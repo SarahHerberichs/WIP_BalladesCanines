@@ -10,10 +10,11 @@ class UserRepository {
         
     public function insertUser(User $user, $cityId) : User {
         $stmt=$this->_connexion->prepare('
-        INSERT INTO USERS (user_id,name,password,phone,city_id,role) 
+        INSERT INTO USERS (user_id,name,password,phone,city_id,role, email) 
         VALUES 
-        (UUID(), :name, :password, :phone, :cityId, :role) 
+        (UUID(), :name, :password, :phone, :cityId, :role, :email) 
         ');
+        $stmt->bindValue('email', $user->getEmail());
         $stmt->bindValue('name',$user->getName());
         $stmt->bindValue('password', password_hash($user->getPassword(), PASSWORD_DEFAULT));
         $stmt->bindValue('phone', $user->getPhone());
@@ -23,31 +24,29 @@ class UserRepository {
         return $user;
     }
 
-    public function retrieveLoginDatas(string $name): User {
+    public function retrieveLoginDatas(string $email): User {
         $stmt = $this->_connexion->prepare('
           SELECT *
-          FROM users where name= :name
+          FROM users where email= :email
         ');
-        $stmt->bindValue('name',$name);
+        $stmt->bindValue('email',$email);
         $stmt ->execute();
     
         $user = $stmt->fetch(PDO::FETCH_OBJ);
-        //Si rien trouvé, retourne null
+
         if (!$user) {
-            echo('salut');
-          return null;
+          throw new Exception('Utilisateur non trouvé.');
         } else {
             $retrievedUser = new User();
+            $retrievedUser ->setEmail($user->email);
             $retrievedUser->setId($user->user_id);
             $retrievedUser->setName($user->name);
             $retrievedUser->setPassword($user->password); 
             $retrievedUser->setPhone($user->phone);
             $retrievedUser->setCityId($user->city_id);
             $retrievedUser->setRole($user->role);
-            var_dump($retrievedUser);
             return $retrievedUser;
         }
       
-      }
-        
+      }  
 }

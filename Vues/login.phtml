@@ -1,18 +1,26 @@
 <div class="login-form">
   <div id="statusOffline"></div>
   <h2>Login</h2>
-  <span class="sendSuccess"><?= $userMessages['sendSuccess'] ?></span>
-  <form method="post" id="formLogin">
-    <label for="inputLogin">Login
-      <span class="errorMessage"><?= $userMessages['requiredLogin'] ?></span>
-    </label>
-    <input name="login" id="inputLogin" type="text"/>
-
-    <label for="inputPassword">Password
-      <span class="errorMessage"><?= $userMessages['requiredPassword'] ?></span>
-    </label>
-    <input name="password" id="inputPassword" type="password" />
-
-    <input type="submit" name="accountSubmit" value="GO" />
+  <form method="post" id="formLogin" class="registration-form">
+    <div>
+      <label for="login">Login:</label>
+      <input type="text" id="login" name="login">
+      <?php if (!empty($userMessages['requiredLogin'])): ?>
+        <p class='error-msg'><?= htmlspecialchars($userMessages['requiredLogin']) ?></p>
+      <?php endif; ?>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+      <?php if (!empty($userMessages['requiredPassword'])): ?>
+        <p class='error-msg'><?= htmlspecialchars($userMessages['requiredPassword']) ?></p>
+      <?php endif; ?>
+    </div>
+    <div>
+      <input type="submit" name="accountSubmit" value="Login">
+    </div>
+    <?php if (!empty($userMessages['loginError'])): ?>
+      <p class='error-msg'><?= htmlspecialchars($userMessages['loginError']) ?></p>
+    <?php endif; ?>
   </form>
 </div>
