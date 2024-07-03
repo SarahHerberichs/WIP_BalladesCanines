@@ -1,5 +1,9 @@
 <?php
 
+namespace Models;
+
+use DateTime;
+
 class User {
     private string $_id;
     private string $_name;

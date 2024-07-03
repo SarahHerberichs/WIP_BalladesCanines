@@ -1,5 +1,8 @@
-
 <?php
+namespace Repositories;
+
+use PDO;
+use PDOException;
 
 class DataBase {
      

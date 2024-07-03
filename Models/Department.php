@@ -1,13 +1,5 @@
 <?php
-// CREATE TABLE IF NOT EXISTS `departments` (
-//     `department_id` int NOT NULL AUTO_INCREMENT,
-//     `name` varchar(255) NOT NULL,
-//     `region_id` int DEFAULT NULL,
-//     `department_number` varchar(10) DEFAULT NULL,
-//     PRIMARY KEY (`department_id`),
-//     KEY `region_id` (`region_id`),
-//     CONSTRAINT `departments_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `regions` (`region_id`)
-//   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+namespace Models;
 
 class Department {
     private string $_name;
@@ -23,6 +15,17 @@ class Department {
     }
     public function setRegionId($regionId):void {
         $this-> _regionId = $regionId;
+    }
+
+    public function getName() : string {
+        return $this->_name;
+    }
+
+    public function getRegionId() : int {
+      return $this-> _regionId;
+    }
+    public function getDepartmentNumber() : int {
+        return $this-> _departmenNumber;
     }
 
 }

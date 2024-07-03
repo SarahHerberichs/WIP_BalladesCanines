@@ -1,0 +1,23 @@
+
+<section id="accueil">
+    <?php if (isset($_SESSION['User']) && !empty($_SESSION['User']['name'])): ?>
+        <p>Bonjour, <?php echo htmlspecialchars($_SESSION['User']['name']); ?> !</p>
+        <div class="dropdown" id="userDropdown">
+            <?php if($_SERVER['REQUEST_URI'] !=="/index.php?page=register"): ?>
+                <i class="fa-solid fa-user-large green"></i>
+                <div class="dropdown-content">
+                    <form id= 'logoutForm' action="Controllers/header_ctrl.php" method="POST">
+                        <input type="submit" name="logout" value='logout'>
+                        <a href="#">Réglages</a>
+                    </form>
+                </div>
+            <?php endif ?>
+    <?php else: ?>
+        <div class="dropdown" id="userDropdown">
+            <?php if($_SERVER['REQUEST_URI'] !=="/index.php?page=register"): ?>
+                <i class="fa-solid fa-user-large black"></i>
+            <?php endif ?>
+        </div>
+    <?php endif ?>
+</section>
+<div class="baniere"></div>

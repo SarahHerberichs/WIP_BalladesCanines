@@ -1,5 +1,10 @@
 <?php
 
+namespace Models;
+
+use DateTime;
+use Exception;
+
 class Walk {
     private string $_walkId;
     private string $_title;
@@ -8,6 +13,7 @@ class Walk {
     private string $_cityName;
     private int $_userId;
     private int $_regionId;
+    private array $_conversation;
     private DateTime $_date;
 
     public function setWalkId($walkId):void {

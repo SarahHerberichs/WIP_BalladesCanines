@@ -1,4 +1,5 @@
 <?php
+namespace DataBase\DBconfig;
 
 return [
    

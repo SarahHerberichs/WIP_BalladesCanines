@@ -38,8 +38,9 @@ main {
 .invisible {
   display: none;
 }
+
 /* Liste regions */
-.region_list ul {
+.region-list ul {
   display: flex;
   justify-content: center;
   height: auto;
@@ -47,7 +48,7 @@ main {
   padding: 0;
 }
 
-.region_list ul li {
+.region-list ul li {
   margin: 10px;
   padding: 8px 16px;
   background-color: #f0f0f0;
@@ -58,12 +59,12 @@ main {
   list-style-type: none;
 }
 
-.region_list ul li:hover {
+.region-list ul li:hover {
   background-color: #e0e0e0;
   transform: scale(1.05);
 }
 
-.region_list ul li::after {
+.region-list ul li::after {
   content: "\25B6"; /* flèche à droite Unicode */
   float: right;
   margin-left: 5px;
@@ -71,18 +72,20 @@ main {
   transition: opacity 0.3s ease;
 }
 
-.region_list ul li:hover::after {
+.region-list ul li:hover::after {
   opacity: 1;
 }
 /* Style du block d'annonce du haut de page pour la version mobile */
-#walk_list {
+#walk-list {
   overflow-x: scroll; /* Permet le défilement horizontal sur mobile */
   white-space: nowrap; /* Évite le retour à la ligne */
   -webkit-overflow-scrolling: touch; /* Améliore le défilement sur iOS */
 }
-/* Annonces du haut de page */
+
 /* Annonces */
 .walk {
+  /* Annonces individuelles */
+  scroll-snap-align: start;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
   padding: 15px;
@@ -115,7 +118,7 @@ main {
 }
 
 /* Conteneur des annonces */
-#walk_list {
+#walk-list {
   display: flex;
   overflow-x: auto;
   padding: 10px;
@@ -123,12 +126,8 @@ main {
   scroll-snap-type: x mandatory;
 }
 
-/* Annonces individuelles */
-.walk {
-  scroll-snap-align: start;
-}
 /*Annonce visible quand click sur carte*/
-.popup_walkClicked {
+.popup-walkClicked {
   display: none;
   border: 1px solid #ccc;
   padding: 10px;

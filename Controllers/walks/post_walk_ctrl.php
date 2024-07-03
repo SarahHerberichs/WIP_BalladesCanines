@@ -1,8 +1,12 @@
 <?php
 
+namespace Controllers\walks\postWalks;
+
+use Repositories\WalkRepository;
+use Models\Walk;
+
 $walkRepo = new WalkRepository ;
 $message = "";
-var_dump($_SESSION['User']);
 if (isset($_SESSION['User']) && !empty($_SESSION['User'])) {
     if (isset ($_POST['post_walk'])){
     
@@ -18,5 +22,5 @@ if (isset($_SESSION['User']) && !empty($_SESSION['User'])) {
 } else { 
     $message = "Veuillez vous connecter";
 };
-require 'Vues/post_walk.phtml';
+require 'Vues/walks/post_walk.phtml';
 ?>

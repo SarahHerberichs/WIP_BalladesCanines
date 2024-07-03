@@ -6,41 +6,42 @@
     <title>BaladesCanines</title>
     <link rel="stylesheet" href="src/CSS/style.css">
     <link rel="stylesheet" href="src/CSS/menuBurger.css">
+    <link rel="stylesheet" href="src/CSS/header.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f924bf4e1d.js" crossorigin="anonymous"></script>
     <script src="src/JS/menuBurger.js" defer></script>
+    <script src="src/JS/openLogin.js" defer></script>
 </head>
 
 <body>
 
     <div class="header">
-    
         <div class="boutonBurger">
             <span class="span1"></span>
             <span class="span2"></span>
             <span class="span3"></span>
         </div>
+        
 
         <div class="menuBurger">
             <a href="?page=home" class="elt">Accueil</a>
             <a href="?page=consult_walks" class="elt">RdvS</a>
             <a href="?page=consult_parcs" class ="elt"> Parcs </a>
-            <a href="?page=consult_randos" class='elt'> Randonnées </a>
+            <a href="?page=consult_hikes" class='elt'> Randonnées </a>
             <a href="?page=consult_activites" class='elt'> Activités</a>
         </div>
     </div>
-
-        <section id="accueil">
-            <h1>Balades Canines</h1>
-        </section>
-        <div class="spacer"></div>
+        <?php require 'Vues/header.phtml' ?>
 
     <main>
-    <?php if (isset($_SESSION['User']) && !empty($_SESSION['User']['name'])) { ?>
-            <p><i class="fa-solid fa-user-large"></i><?php echo htmlspecialchars($_SESSION['User']['name']); ?></p>
-        <?php } ?>
         <?php require 'router.php' ?>
+            <!--invisible juskau click
+            au click : popup s'affiche
+            si au chargement l'url a un msg d'erreur, afficher la popup -->
+        <div class="login-page invisible ">
+            <?php require 'Controllers/login_ctrl.php'?> 
+        </div>
     </main>
 </body>
 </html>

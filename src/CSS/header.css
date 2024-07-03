@@ -1,0 +1,65 @@
+/* Style pour le formulaire de déconnexion */
+#logoutForm {
+  display: inline-block; /* Affiche le formulaire en ligne */
+}
+
+/* Style pour le bouton de déconnexion */
+#logoutForm input[type="submit"] {
+  width: 100%;
+  padding: 10px 20px; /* Rembourrage interne */
+  background-color: #f44336; /* Couleur de fond rouge */
+  color: white; /* Couleur du texte en blanc */
+  border: none; /* Pas de bordure */
+  border-radius: 4px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de souris */
+  text-decoration: none; /* Pas de soulignement pour le texte */
+  font-size: 14px; /* Taille de la police */
+  font-family: Arial, sans-serif; /* Police de caractères */
+}
+
+/* Style pour le lien "Réglages" */
+#logoutForm a {
+  color: #333; /* Couleur du texte gris */
+  text-decoration: none; /* Pas de soulignement */
+  font-size: 14px; /* Taille de la police */
+  font-family: Arial, sans-serif; /* Police de caractères */
+}
+
+/* Au survol du bouton de déconnexion */
+#logoutForm input[type="submit"]:hover {
+  background-color: #cc0000; /* Couleur de fond rouge foncé */
+}
+
+/* Dropdown */
+.dropdown {
+  position: fixed;
+  top: 20px;
+  right: 0;
+  margin-right: 2em;
+  z-index: 25;
+}
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  right: 20px;
+  top: 50px;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f9f9f9;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

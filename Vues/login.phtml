@@ -1,7 +1,6 @@
 <div class="login-form">
-  <div id="statusOffline"></div>
-  <h2>Login</h2>
   <form method="post" id="formLogin" class="registration-form">
+  <button class='btn-close close-login' >close</button>
     <div>
       <label for="login">Login:</label>
       <input type="text" id="login" name="login">
@@ -22,5 +21,6 @@
     <?php if (!empty($userMessages['loginError'])): ?>
       <p class='error-msg'><?= htmlspecialchars($userMessages['loginError']) ?></p>
     <?php endif; ?>
+    <a href="?page=register">S'inscrire</a>
   </form>
 </div>

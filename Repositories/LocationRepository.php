@@ -1,7 +1,7 @@
 <?php
 
-// Injecter dans table Regions en cherchant dans cities.JSON : 
-// cities (pour chaque), region_name.
+namespace Repositories;
+use PDO;
 
 class LocationRepository {
     private PDO $_connexion;

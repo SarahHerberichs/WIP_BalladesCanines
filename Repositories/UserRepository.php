@@ -1,5 +1,11 @@
 <?php
 
+namespace Repositories;
+
+use PDO;
+use Models\User;
+use Exception;
+
 class UserRepository {
     private PDO $_connexion;
 

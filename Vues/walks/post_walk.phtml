@@ -2,19 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../src/CSS/postWalk.css">
-    <title>Create Walk</title>
+    <link rel="stylesheet" href="../../src/CSS/postWalk.css">
+    <title>Post Walk</title>
 </head>
 <body>
 <div class="popup">
-    <button class='btn-close' >close</button>
+    <button class='btn-close close-postWalk' >close</button>
     <?php if (isset($_SESSION['User']) && !empty($_SESSION['User'])): ?>
-    <form action="" method="POST" class="form_post_walk">
+    <form action="" method="POST" class="form-post-walk">
         <input type="text" name="title" placeholder="Titre de l'annonce" required>
         <input type="date" id="date" name="date" placeholder="Date de l'annonce" required>
         <textarea name="text" placeholder="Texte de l'annonce" rows="4" required></textarea>
         
-       <?php require 'location.phtml' ?>
+       <?php require 'Vues/location.phtml' ?>
         <input type="submit" name="post_walk" value="Ajouter l'annonce">
     </form>
     <?php else: ?>
@@ -22,3 +22,4 @@
     <?php endif; ?>
 </div>
 </body>
+

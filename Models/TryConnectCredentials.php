@@ -1,4 +1,7 @@
 <?php
+
+namespace Models;
+
 class TryConnectCredentials {   
   private string $_login;
   private string $_password;

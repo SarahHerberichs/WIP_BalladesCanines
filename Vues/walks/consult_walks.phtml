@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +11,12 @@
         }
     </style>
 <body>
-    <a href="#" class='post_walk_link'>Proposer un RDV</a>
-    <div class="post_walk_box invisible">
-    <?php require __DIR__ . '/../Controllers/post_walk_ctrl.php'; ?>    </div>
+    <a href="#" class='post-walk-link'>Proposer un RDV</a>
+    <div class="post-walk-box invisible">
+        <?php require 'Controllers/walks/post_walk_ctrl.php';
+    ?> </div>
     <h3>Les prochains RDV</h3>
-    <div id='walk_list'>
+    <div id='walk-list'>
         <?php
         //Dates les plus proches
         // usort($walkList, function($a, $b) {
@@ -43,26 +43,34 @@
         ?>
           
     </div>
-    <div class="region_list">
+    <div class="region-list">
         <ul>
         <?php foreach($regions as $region) : ?>
-            <li class="region_btn" data-region-id="<?= $region->getID() ?>"><?= $region->getName() ?></li>
+            <li class="region-btn" data-region-id="<?= $region->getID() ?>"><?= $region->getName() ?></li>
         <?php
         endforeach ?>
         </ul>
     </div>
 
-    <div class='selected_walk_popup invisible'>Add invisible?</div>
+    <div class='selected-walk-popup invisible'>Add invisible?</div>
     
     <div id="map"></div> <!-- Conteneur pour la carte -->
-    <div class="popup_walkClicked">
-        <button class='closeBtn'>Close</button>
-        <h3 class = "title_walkClicked"></h3>
-        <p class = "text_walkClicked"></p>
-        <p class = "city_walkClicked"></p>
+    <div class="popup-walkClicked">
+        <button class='btn-close close-walkClicked'>Close</button>
+        <h3 class = "title-walkClicked"></h3>
+        <p class = "text-walkClicked"></p>
+        <p class = "city-walkClicked"></p>
+        <div class="conversation">
+        <form action="" method="POST">
+            <input type="hidden" value="" id="walk-id">
+            <input type="text" name="message" placeholder="Écrivez votre message ici" required>
+            <input type="submit" name="msg-conversation" value="Envoyer">
+        </form>
+          
+        </div>
     </div>
     <script>
-        //array_map parcours chaque element et leur applique cette fonction de rappel qui transforme chaque objet en un tabAss
+        //array-map parcours chaque element et leur applique cette fonction de rappel qui transforme chaque objet en un tabAss
         var walkData = <?= json_encode(array_map(function($walk) {
             return [
                 'id' => $walk->getWalkId(),
@@ -77,6 +85,7 @@
     </script>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="../src/JS/index.js"></script> <!-- Fichier JavaScript pour l'initialisation de la carte -->
+    <script src="../../src/JS/postWalk.js"></script>
+    <script src="../../src/JS/index.js"></script>
 </body>
-</html>
+

@@ -14,15 +14,15 @@
 }
 
 /* Style pour le formulaire */
-.form_post_walk {
+.form-post-walk {
   display: flex;
   flex-direction: column;
 }
 
-.form_post_walk input[type="text"],
-.form_post_walk input[type="date"],
-.form_post_walk textarea,
-.form_post_walk select {
+.form-post-walk input[type="text"],
+.form-post-walk input[type="date"],
+.form-post-walk textarea,
+.form-post-walk select {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -30,7 +30,7 @@
   font-size: 16px;
 }
 
-.form_post_walk input[type="submit"] {
+.form-post-walk input[type="submit"] {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -41,12 +41,12 @@
   transition: background-color 0.3s ease;
 }
 
-.form_post_walk input[type="submit"]:hover {
+.form-post-walk input[type="submit"]:hover {
   background-color: #0056b3;
 }
 
 /* Style pour le label */
-.form_post_walk label {
+.form-post-walk label {
   font-weight: bold;
   margin-top: 10px;
 }

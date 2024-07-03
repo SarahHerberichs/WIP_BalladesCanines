@@ -1,7 +1,9 @@
 <form action="" method="POST" class="registration-form">
-<?php if (isset($_SESSION['success_message'])): ?>
-        <p class="success-message"><?php echo $_SESSION['success_message']; ?></p>
-        <?php unset($_SESSION['success_message']); // Effacer le message après l'affichage ?>
+<button class='btn-close close-register' >close</button>
+
+<?php if (isset($_SESSION['success-message'])): ?>
+        <p class="success-message"><?php echo $_SESSION['success-message']; ?></p>
+        <?php unset($_SESSION['success-message']); ?>
     <?php endif; ?>
     <div>
         <label for="email">Email : </label>
@@ -22,9 +24,10 @@
 
     <!-- Champs avec valeurs par défaut -->
     <input type="hidden" name="role" value="user">
-    <input type="hidden" name="signup_date" value="<?php echo date('Y-m-d H:i:s'); ?>">
+    <input type="hidden" name="signup-date" value="<?php echo date('Y-m-d H:i:s'); ?>">
     <?php require 'location.phtml' ?>
     <div>
         <input type="submit" name="confirm_registration" value="Valider">
     </div>
 </form>
+<script src="../src/JS/register.js"></script>

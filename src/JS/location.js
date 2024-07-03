@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const citiesJsonUrl = "cities.json";
+  const citiesJsonUrl = "src/cities.json";
 
   const departmentSelect = document.getElementById("department");
   const citySearchInput = document.getElementById("citySearch");
