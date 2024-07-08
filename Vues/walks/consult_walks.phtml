@@ -1,91 +1,34 @@
+<!-- RECOIT LA LISTE DES ANNONCES PAR CONTROLLEUR walk_list_ctrl -->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carte interactive avec Leaflet</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        #map { /* Style pour le conteneur de la carte */
-            height: 600px;
-            z-index:1;
-        }
-    </style>
-<body>
+<!-- SEULEMENT SI PAGE CONSULTWALKS - PAS HOME -->
+<?php if(isset($_GET['page']) && $_GET['page'] != "home"): ?>
     <a href="#" class='post-walk-link'>Proposer un RDV</a>
+    <!-- Proposer un RDV -->
     <div class="post-walk-box invisible">
-        <?php require 'Controllers/walks/post_walk_ctrl.php';
-    ?> </div>
-    <h3>Les prochains RDV</h3>
-    <div id='walk-list'>
-        <?php
-        //Dates les plus proches
-        // usort($walkList, function($a, $b) {
-        //     return $a->getDate() <=> $b->getDate();
-        // });
-            $count = 0;
-            foreach($walkList as $walk) :
-                // Limite à 10 annonces
-                if ($count >= 10) {
-                    break; 
-                }
-                ?>
-                <div class="walk">
-                    
-                    <h3><?= $walk->getTitle() ?></h3>
-                    <p>Date : <?= $walk->getDate()->format('d-m-Y') ?></p>
-                    <p> <?= $walk->getText() ?> </p>
-                    <p> <?= $walk->getCityId() ?> </p>
-                    <p> Ville : <?= $walk->getCityName() ?> </p>
-                </div>
-            <?php
-            $count++;
-            endforeach;
-        ?>
-          
+        <?php require 'Controllers/walks/post_walk_ctrl.php'; ?> 
     </div>
-    <div class="region-list">
-        <ul>
-        <?php foreach($regions as $region) : ?>
-            <li class="region-btn" data-region-id="<?= $region->getID() ?>"><?= $region->getName() ?></li>
-        <?php
-        endforeach ?>
-        </ul>
-    </div>
+<?php endif; ?>
 
-    <div class='selected-walk-popup invisible'>Add invisible?</div>
-    
-    <div id="map"></div> <!-- Conteneur pour la carte -->
-    <div class="popup-walkClicked">
-        <button class='btn-close close-walkClicked'>Close</button>
-        <h3 class = "title-walkClicked"></h3>
-        <p class = "text-walkClicked"></p>
-        <p class = "city-walkClicked"></p>
-        <div class="conversation">
-        <form action="" method="POST">
-            <input type="hidden" value="" id="walk-id">
-            <input type="text" name="message" placeholder="Écrivez votre message ici" required>
-            <input type="submit" name="msg-conversation" value="Envoyer">
-        </form>
-          
-        </div>
-    </div>
-    <script>
-        //array-map parcours chaque element et leur applique cette fonction de rappel qui transforme chaque objet en un tabAss
-        var walkData = <?= json_encode(array_map(function($walk) {
-            return [
-                'id' => $walk->getWalkId(),
-                'title' => $walk->getTitle(),
-                'latitude' => $walk->getLatitude(),
-                'longitude' => $walk->getLongitude(),
-                'date' => $walk->getDate(),
-                'text' => $walk->getText(),
-                'region'=> $walk->getRegionId()
-            ];
-        }, $walkList)); ?>;
-    </script>
+<h3>RDVS Marches</h3>
+<!-- Liste des prochains Walk -->
+<?php require 'walk_list.phtml'; ?>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="../../src/JS/postWalk.js"></script>
-    <script src="../../src/JS/index.js"></script>
-</body>
+<!-- SEULEMENT SI PAGE CONSULTWALKS - PAS HOME -->
+<?php if(isset($_GET['page']) && $_GET['page'] != "home"): ?>
+    <!-- Affichage de la liste des régions -->
+    <?php require __DIR__ . '/../location/region_list.phtml'; ?>
+<?php endif; ?>
 
+<!-- SEULEMENT SI PAGE HOME - PAS CONSULTWALKS -->
+<?php if(isset($_GET['page']) && $_GET['page'] == "home"): ?>
+    <h3>Répertoire de randos</h3>
+    <!-- Contenu spécifique pour la page Home -->
+    ...A suivre ...
+<?php endif; ?>
+
+<div id="map"></div>
+<!-- Popup de l'annonce cliquée -->
+<?php require 'walk_details.phtml'; ?>
+
+<script src="../../Assets/JS/postWalk.js"></script>
+<script src="../Assets/JS/index.js"></script> <!-- Fichier JavaScript pour l'initialisation de la carte -->

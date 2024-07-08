@@ -2,17 +2,25 @@
 namespace Controllers\walks\consultWalks;
 
 use Exception;
+use Models\WalkConversation;
 use Repositories\WalkRepository;
-
-
-if (isset($_POST['msg-conversation'])){
-    var_dump($_POST);
-    //Ajouter un convRepository , Creer un Model Conversation, dans convRepository créer un postMsgConv , au submit msg-conversation apeller cette method
-    //Pour l'affichage  : creer une method dans WalkRepository qui récupere les "conversations" dont la walk_id est celle qu'on passera en param
-    //Injection dans consult_walk du resultat OU Setter/Getter d'un tableau d'objets Walk->getCOnv??
-}
+use Repositories\WalkConversationRepository;
 
 $walkRepo = new WalkRepository();
+$convRepo = new WalkConversationRepository();
+
+if (isset($_POST['msg_conversation'])){
+  
+
+    $conversation = new WalkConversation();
+
+    $conversation->setWalkId($_POST['walk_id']);
+    $conversation->setText($_POST['message']);
+    $convRepo->insertMessage($conversation,$_POST['walk_id']);
+    //recup walkId et text
+}
+
+
 //Pour affichage de toutes les régions qui seront clickable pour filtrer walks par région(injection url js)
 $regions = $walkRepo->getRegions();
 $regions_id = [];
@@ -26,11 +34,14 @@ if (isset($_GET['region'])) {
     if (!in_array($regionId, $regionIds)) {
         throw new Exception('Region invalide.');
     }
-    $walkList = $walkRepo->consultWalksById($regionId);
+    $walkList = $walkRepo->consultWalksByRegionId($regionId);
+   
 } else {
     $walkList = $walkRepo->consultWalks();
 }
 
 
+
 require 'Vues/walks/consult_walks.phtml';
+
 ?>

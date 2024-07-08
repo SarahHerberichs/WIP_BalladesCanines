@@ -1,0 +1,21 @@
+<div id='walk-list'>
+    <?php
+        $count = 0;
+        foreach($walkList as $walk) :
+    
+            ?>
+            <div class="walk">
+                <h3><?= $walk->getTitle() ?></h3>
+                <p>Rdv le :<b><?= $walk->getDate()->format('d F Y') ?></b></p>
+                <p> à : <?= $walk->getTime() ?></p> 
+                <p> Ville : <?= $walk->getCityName() ?> </p>
+             
+                <p>Postée le : <?= htmlspecialchars($walk->getCreatedAt()->format('d F Y')) ?></p>    
+                <p>Par : <?= $walk->getUserName() ?></p> 
+            </div>
+        <?php
+        $count++;
+        endforeach;
+    ?>
+      
+    </div>

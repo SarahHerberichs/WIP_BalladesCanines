@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Models;
 
 use DateTime;
@@ -12,15 +11,46 @@ class Walk {
     private int $_cityid;
     private string $_cityName;
     private int $_userId;
+    private string $_userName;
     private int $_regionId;
     private array $_conversation;
+    private string $_time; // Changement en string
     private DateTime $_date;
+    private DateTime $created_at;
 
-    public function setWalkId($walkId):void {
-        $this-> _walkId = $walkId;
-    }
     private float $latitude;
     private float $longitude;
+
+    public function setCreatedAt($created_at): void {
+        if (is_string($created_at)) {
+            try {
+                $this->created_at = new DateTime($created_at);
+            } catch (Exception $e) {
+                echo "Erreur de conversion de la date de création : " . $e->getMessage();
+            }
+        } elseif ($created_at instanceof DateTime) {
+            $this->created_at = $created_at;
+        } else {
+            echo "Format de date de création invalide";
+        }
+    }
+
+    public function setTime(string $time): void { // Changement en string
+        $timeParts = explode(':',$time);
+        if (count($timeParts) >= 2) {
+            $this->_time = $timeParts[0] . 'h' . $timeParts[1];
+        } else {
+            $this->_time = $time; // In case the format is incorrect, store as is
+        }
+    }
+
+    public function setConversation($conversation): void {
+        $this->_conversation = $conversation;
+    }
+
+    public function setWalkId($walkId): void {
+        $this->_walkId = $walkId;
+    }
 
     public function setLatitude(float $latitude): void {
         $this->latitude = $latitude;
@@ -30,41 +60,58 @@ class Walk {
         $this->longitude = $longitude;
     }
 
-    public function setTitle($title):void {
-        $this-> _title = $title;
+    public function setTitle($title): void {
+        $this->_title = $title;
     }
-    public function setText($text):void {
-        $this-> _text = $text;
+
+    public function setText($text): void {
+        $this->_text = $text;
     }
-    public function setCityId($cityid):void {
-        $this-> _cityid = $cityid;
+
+    public function setCityId($cityid): void {
+        $this->_cityid = $cityid;
     }
-    public function setCityName($cityName):void {
-        $this-> _cityName = $cityName;
+
+    public function setCityName($cityName): void {
+        $this->_cityName = $cityName;
     }
-    public function setDate(string $date): void
-    {
+
+    public function setDate($date): void {
         try {
-            // Tenter de créer un objet DateTime à partir de la chaîne
             $this->_date = new DateTime($date);
         } catch (Exception $e) {
-            // Gérer l'exception si la conversion échoue
-            // Vous pouvez enregistrer l'erreur, utiliser une date par défaut ou lancer une nouvelle exception
             echo "Erreur de conversion de la date : " . $e->getMessage();
-            // $this->_date = new DateTime('1970-01-01'); // Utiliser une date par défaut
         }
     }
-    public function setUserId($_userId):void {
-        $this-> _userId = $_userId;
+
+    public function setUserId($_userId): void {
+        $this->_userId = $_userId;
     }
-    public function setRegionId($_regionId):void {
-        $this-> _regionId = $_regionId;
-    } 
-    // Getters (et setters si nécessaire)
+
+    public function setUserName($userName): void {
+        $this->_userName = $userName;
+    }
+
+    public function setRegionId($_regionId): void {
+        $this->_regionId = $_regionId;
+    }
+
+    public function getCreatedAt(): DateTime {
+        return $this->created_at;
+    }
+
+    public function getTime(): string {
+        return $this->_time;
+    }
+
+    public function getConversation(): array {
+        return $this->_conversation;
+    }
+
     public function getWalkId(): string {
         return $this->_walkId;
     }
-    
+
     public function getLatitude(): float {
         return $this->latitude;
     }
@@ -72,6 +119,7 @@ class Walk {
     public function getLongitude(): float {
         return $this->longitude;
     }
+
     public function getTitle(): string {
         return $this->_title;
     }
@@ -83,6 +131,7 @@ class Walk {
     public function getCityId(): int {
         return $this->_cityid;
     }
+
     public function getCityName(): string {
         return $this->_cityName;
     }
@@ -94,7 +143,17 @@ class Walk {
     public function getUserId(): int {
         return $this->_userId;
     }
-    public function getRegionId() : int {
+
+    public function getUserName(): string {
+        return $this->_userName;
+    }
+
+    public function getRegionId(): int {
         return $this->_regionId;
     }
+
+    public function addConversation(WalkConversation $conversation): void {
+        $this->_conversation[] = $conversation;
+    }
 }
+?>

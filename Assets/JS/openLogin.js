@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  alert("ok");
   const loginPopUp = document.querySelector(".login-page");
   const userMsgs = document.querySelectorAll(".error-msg");
   const btnClose = document.querySelector(".close-login");
@@ -15,8 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   userIcon.addEventListener("click", toggleLoginPopup);
 
-  btnClose.addEventListener("click", function (e) {
-    e.preventDefault();
-    toggleLoginPopup();
-  });
+  if (btnClose) {
+    btnClose.addEventListener("click", function (e) {
+      e.preventDefault();
+      toggleLoginPopup();
+    });
+  }
 });

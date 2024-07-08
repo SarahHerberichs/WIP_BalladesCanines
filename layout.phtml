@@ -2,17 +2,25 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BaladesCanines</title>
-    <link rel="stylesheet" href="src/CSS/style.css">
-    <link rel="stylesheet" href="src/CSS/menuBurger.css">
-    <link rel="stylesheet" href="src/CSS/header.css">
+    <link rel="stylesheet" href="Assets/CSS/style.css">
+    <link rel="stylesheet" href="Assets/CSS/menuBurger.css">
+    <link rel="stylesheet" href="Assets/CSS/header.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f924bf4e1d.js" crossorigin="anonymous"></script>
-    <script src="src/JS/menuBurger.js" defer></script>
-    <script src="src/JS/openLogin.js" defer></script>
+    <script src="Assets/JS/menuBurger.js" defer></script>
+    <script src="Assets/JS/openLogin.js" defer></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+ 
+    </style>
 </head>
+
 
 <body>
 
@@ -21,9 +29,7 @@
             <span class="span1"></span>
             <span class="span2"></span>
             <span class="span3"></span>
-        </div>
-        
-
+        </div>       
         <div class="menuBurger">
             <a href="?page=home" class="elt">Accueil</a>
             <a href="?page=consult_walks" class="elt">RdvS</a>
@@ -35,12 +41,13 @@
         <?php require 'Vues/header.phtml' ?>
 
     <main>
+        <?php require 'Vues/validation_or_error.phtml' ?>
         <?php require 'router.php' ?>
             <!--invisible juskau click
             au click : popup s'affiche
             si au chargement l'url a un msg d'erreur, afficher la popup -->
         <div class="login-page invisible ">
-            <?php require 'Controllers/login_ctrl.php'?> 
+            <?php require 'Controllers/users/login_ctrl.php'?> 
         </div>
     </main>
 </body>

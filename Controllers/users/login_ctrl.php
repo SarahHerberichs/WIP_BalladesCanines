@@ -49,5 +49,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accountSubmit'])) {
     }
 }
 
-require 'Vues/login.phtml';
+require 'Vues/users/login.phtml';
 ?>

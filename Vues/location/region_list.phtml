@@ -1,0 +1,10 @@
+<div class="region-list">
+    <ul>
+    <?php foreach ($regions as $region) : ?>
+        <li class="region-btn" data-region-id="<?= $region->getID() ?>">
+            <img class='flag' src="../../Files/images/drapeaux/<?= $region->getName() ?>.png" alt="<?= $region->getName() ?>">
+            <p><?= $region->getName() ?></p>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+</div>

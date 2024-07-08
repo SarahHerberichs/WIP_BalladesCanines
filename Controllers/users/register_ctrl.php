@@ -14,9 +14,9 @@ if (isset( $_POST['confirm_registration'])) {
     $user->setName(htmlentities($_POST['name']));
     $user->setPassword(($_POST['password']));
     $user->setPhone(htmlentities($_POST['phone']));
-    $cityId = $walkRepo->getCityId(htmlentities($_POST['search']));
+    $cityId = $walkRepo->getCityId(htmlentities($_POST['cityNameSearch']),htmlentities($_POST['zipcode']));
     $userRepo->insertUser($user,$cityId);
         // Message de succès
     $_SESSION['success-message'] = 'Votre compte a été créé avec succès !';
 }
-require 'Vues/register.phtml';
+require 'Vues/users/register.phtml';

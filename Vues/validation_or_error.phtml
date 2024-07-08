@@ -1,0 +1,11 @@
+<section class="validation_or_error">
+    
+<?php if (isset($_GET['message_sent']) && $_GET['message_sent'] == 1): ?>
+    <div class="success-msg">Votre message a été envoyé avec succès !</div>
+<?php elseif (isset($_GET['walk_sent']) && $_GET['walk_sent'] == 1): ?>
+    <div class="success-msg">Votre annonce a été postée avec succès !</div>
+<?php else: ?> 
+    <div class="success-msg"></div>
+<?php endif; ?>
+
+</section>

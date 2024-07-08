@@ -1,0 +1,40 @@
+<!--INJECTE EN JS -->
+
+<!-- Au click sur une walk, affichage des détails de la walk + possibilité de conversation -->
+<div class="popup-walkClicked">
+    <button class='btn-close close-walkClicked'>Close</button>
+    <h3 class = "title-walkClicked"></h3>
+    <p class='date'></p>
+    <p class='time'></p>
+    <p class = "text-walkClicked"></p>
+    <p class = "city-walkClicked"></p>
+    <div class="conversation">
+        <?php require 'Controllers/walks/post_message_ctrl.php' ?>
+        <div class="conversation-list"></div>
+    </div>
+
+    </div>
+ 
+    <script>
+ var walkData = <?= json_encode(array_map(function ($walk) {
+    return [
+        'id' => $walk->getWalkId(),
+        'title' => htmlspecialchars($walk->getTitle()),
+        'latitude' => $walk->getLatitude(),
+        'longitude' => $walk->getLongitude(),
+        'date' => $walk->getDate()->format('d F Y '),
+        'text' => htmlspecialchars($walk->getText()),
+        'cityName' => $walk->getCityName(),
+        'region' => $walk->getRegionId(),
+        'time' => $walk->getTime(),
+        'conversations' => array_map(function ($conversation) {
+            return [
+                'id' => $conversation->getConversationId(),
+                'text' => htmlspecialchars($conversation->getText()),
+                'date' => $conversation->getDate()->format('d F Y'),
+                'user' => htmlspecialchars($conversation->getUserName())
+            ];
+        }, $walk->getConversation())
+    ];
+}, $walkList),JSON_UNESCAPED_UNICODE); ?>;
+</script>
