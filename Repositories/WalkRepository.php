@@ -3,8 +3,8 @@
 namespace Repositories;
 
 use PDO;
-use Models\Walk; // Assurez-vous d'importer la classe Walk si elle est dans Models
-use Models\Region; // Assurez-vous d'importer la classe Region si elle est dans Models
+use Models\Walk; 
+use Models\Region; 
 use Models\WalkConversation;
 
 class WalkRepository {
