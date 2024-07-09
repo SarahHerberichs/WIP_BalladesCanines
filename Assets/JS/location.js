@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const cityZipcode = document.getElementById("zipcode");
   const cityName = document.getElementById("cityName");
 
-  let citiesData = []; // Stockage des données des villes
+  let citiesData = []; 
 
-  // Fonction pour charger les données JSON des villes
+  /
   function loadCitiesJson() {
     return fetch(citiesJsonUrl)
       .then((response) => response.json())
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         const sortedDepartments = Array.from(departmentsSet).sort();
 
-        // Ajouter chaque département trié comme une option dans le select
+        // Ajoute chaque département trié comme une option dans le select
         sortedDepartments.forEach((department) => {
           const option = document.createElement("option");
           option.value = department;
@@ -77,10 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Remplir le select des départements au chargement de la page
+  // Rempli le select des départements au chargement de la page
   fillDepartments();
 
-  // Écouter le changement dans le select des départements
+  // Écoute le changement dans le select des départements
   departmentSelect.addEventListener("change", function () {
     citySearchInput.value = "";
     const selectedDepartment = this.value;
@@ -89,12 +89,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let filteredCities = [];
 
     if (selectedDepartment === "Tous les départements") {
-      // Filtrer toutes les villes si "Tous les départements" est sélectionné
+      // Filtre toutes les villes si "Tous les départements" est sélectionné
       filteredCities = citiesData.filter((city) =>
         city.label.toLowerCase().startsWith(searchValue)
       );
     } else {
-      // Filtrer les villes par département sélectionné et correspondance avec les premières lettres
+      // Filtre les villes par département sélectionné et correspondance avec les premières lettres
       filteredCities = citiesData.filter(
         (city) =>
           city.department_name.toLowerCase() ===
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showCityResults(filteredCities);
   });
 
-  // Écouter les événements de saisie dans le champ de recherche de ville
+  // Écoute les événements de saisie dans le champ de recherche de ville
   citySearchInput.addEventListener("input", function () {
     cityResultsDiv.classList.remove("invisible");
     const searchValue = this.value.trim().toLowerCase();
@@ -115,12 +115,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let filteredCities = [];
 
     if (selectedDepartment === "Tous les départements") {
-      // Filtrer toutes les villes si "Tous les départements" est sélectionné
+      // Filtre toutes les villes si "Tous les départements" est sélectionné
       filteredCities = citiesData.filter((city) =>
         city.label.toLowerCase().startsWith(searchValue)
       );
     } else {
-      // Filtrer les villes par département sélectionné et correspondance avec les premières lettres
+      // Filtre les villes par département sélectionné et correspondance avec les premières lettres
       filteredCities = citiesData.filter(
         (city) =>
           city.department_name.toLowerCase() ===

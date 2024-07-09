@@ -265,8 +265,13 @@ main {
     width: calc(
       100% / 5 - 20px
     ); /* Taille des annonces pour 5 annonces par ligne */
+<<<<<<< HEAD
     margin-right: 20px;
     margin-bottom: 20px;
+=======
+    margin-right: 20px; 
+    margin-bottom: 20px; 
+>>>>>>> 836c09194615dd2559324f18aa1429d6f031f6bf
   }
   /*Map leaflet */
   #map {

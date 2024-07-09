@@ -42,7 +42,7 @@ function mapLeaflet() {
       "<b>" +
         decodeHTMLEntities(walk.title) +
         "</b><br> le :" +
-        formatDate(walk.date) + // Utilisation de la fonction formatDate pour formater la date
+        formatDate(walk.date) +
         "<br>" +
         "à :" +
         walk.time +
