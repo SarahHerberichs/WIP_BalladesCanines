@@ -45,13 +45,12 @@ class Walk {
     public function setDate(string $date): void
     {
         try {
-            // Tenter de créer un objet DateTime à partir de la chaîne
+
             $this->_date = new DateTime($date);
         } catch (Exception $e) {
-            // Gérer l'exception si la conversion échoue
-            // Vous pouvez enregistrer l'erreur, utiliser une date par défaut ou lancer une nouvelle exception
+    
             echo "Erreur de conversion de la date : " . $e->getMessage();
-            // $this->_date = new DateTime('1970-01-01'); // Utiliser une date par défaut
+
         }
     }
     public function setUserId($_userId):void {
@@ -60,7 +59,7 @@ class Walk {
     public function setRegionId($_regionId):void {
         $this-> _regionId = $_regionId;
     } 
-    // Getters (et setters si nécessaire)
+ 
     public function getWalkId(): string {
         return $this->_walkId;
     }
