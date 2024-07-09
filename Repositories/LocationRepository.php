@@ -24,7 +24,7 @@ class LocationRepository {
           $latitude = isset($city['latitude']) && !empty($city['latitude']) ? floatval($city['latitude']) : null;
           $longitude = isset($city['longitude']) && !empty($city['longitude']) ? floatval($city['longitude']) : null;
           
-          // Vérifier si la région existe déjà
+          // Vérifie si la région existe déjà
           $stmt = $this->_connexion->prepare('
               SELECT region_id FROM regions WHERE name = :name
           ');
