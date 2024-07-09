@@ -132,9 +132,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-left: 3px solid var(--blanc); /* Adding border to the menu */
-  border-radius: 10px; /* Adding rounded corners */
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Adding shadow */
+  border-left: 3px solid var(--blanc); 
+  border-radius: 10px; 
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); 
 }
 
 .menuBurgerOpen {
@@ -158,8 +158,8 @@ body {
   .menuBurger {
     right: -100vw;
     left: auto;
-    border-left: none; /* Removing border on larger screens */
-    border-right: 3px solid var(--blanc); /* Adding border to the right side */
+    border-left: none;
+    border-right: 3px solid var(--blanc);
   }
   .menuBurgerOpen {
     right: 0;
