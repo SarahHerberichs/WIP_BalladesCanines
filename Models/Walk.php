@@ -14,7 +14,7 @@ class Walk {
     private string $_userName;
     private int $_regionId;
     private array $_conversation;
-    private string $_time; // Changement en string
+    private string $_time; 
     private DateTime $_date;
     private DateTime $created_at;
 
@@ -35,12 +35,12 @@ class Walk {
         }
     }
 
-    public function setTime(string $time): void { // Changement en string
+    public function setTime(string $time): void { 
         $timeParts = explode(':',$time);
         if (count($timeParts) >= 2) {
             $this->_time = $timeParts[0] . 'h' . $timeParts[1];
         } else {
-            $this->_time = $time; // In case the format is incorrect, store as is
+            $this->_time = $time; 
         }
     }
 
