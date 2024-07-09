@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cityResultsDiv = document.getElementById("cityResults");
   const cityId = document.getElementById("cityId");
 
-  let citiesData = []; // Stockage des données des villes
+  let citiesData = [];
 
   // Fonction pour charger les données JSON des villes
   function loadCitiesJson() {
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Remplir le select des départements au chargement de la page
+  // Rempli le select des départements au chargement de la page
   fillDepartments();
 
   // Écouter le changement dans le select des départements
@@ -83,12 +83,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let filteredCities = [];
 
     if (selectedDepartment === "Tous les départements") {
-      // Filtrer toutes les villes si "Tous les départements" est sélectionné
+      // Filtre toutes les villes si "Tous les départements" est sélectionné
       filteredCities = citiesData.filter((city) =>
         city.label.toLowerCase().startsWith(searchValue)
       );
     } else {
-      // Filtrer les villes par département sélectionné et correspondance avec les premières lettres
+      // Filtre les villes par département sélectionné et correspondance avec les premières lettres
       filteredCities = citiesData.filter(
         (city) =>
           city.department_name.toLowerCase() ===
@@ -109,12 +109,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let filteredCities = [];
 
     if (selectedDepartment === "Tous les départements") {
-      // Filtrer toutes les villes si "Tous les départements" est sélectionné
+      // Filtre toutes les villes si "Tous les départements" est sélectionné
       filteredCities = citiesData.filter((city) =>
         city.label.toLowerCase().startsWith(searchValue)
       );
     } else {
-      // Filtrer les villes par département sélectionné et correspondance avec les premières lettres
+      // Filtre les villes par département sélectionné et correspondance avec les premières lettres
       filteredCities = citiesData.filter(
         (city) =>
           city.department_name.toLowerCase() ===
