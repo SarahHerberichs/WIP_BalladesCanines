@@ -6,10 +6,6 @@ use Repositories\WalkRepository;
 
 
 if (isset($_POST['msg-conversation'])){
-    var_dump($_POST);
-    //Ajouter un convRepository , Creer un Model Conversation, dans convRepository créer un postMsgConv , au submit msg-conversation apeller cette method
-    //Pour l'affichage  : creer une method dans WalkRepository qui récupere les "conversations" dont la walk_id est celle qu'on passera en param
-    //Injection dans consult_walk du resultat OU Setter/Getter d'un tableau d'objets Walk->getCOnv??
 }
 
 $walkRepo = new WalkRepository();
