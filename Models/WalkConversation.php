@@ -14,7 +14,7 @@ class WalkConversation {
     private DateTime $_date;
 
     public function __construct() {
-        // Initialiser la propriété _date avec la date actuelle
+        // Initialise la propriété _date avec la date actuelle
         $this->_date = new DateTime();
     }
 
@@ -57,10 +57,10 @@ class WalkConversation {
 
     public function setDate(string $date): void {
         try {
-            // Tenter de créer un objet DateTime à partir de la chaîne
+            // Tente de créer un objet DateTime à partir de la chaîne
             $this->_date = new DateTime($date);
         } catch (Exception $e) {
-            // Gérer l'exception si la conversion échoue
+            // Gére l'exception si la conversion échoue
             echo "Erreur de conversion de la date : " . $e->getMessage();
         }
     }
