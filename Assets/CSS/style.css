@@ -107,7 +107,7 @@ main {
 }
 
 .walk:hover {
-  transform: scale(1.05); /* Effet de zoom au survol */
+  transform: scale(1.05);
 }
 
 .walk h3 {
@@ -265,8 +265,8 @@ main {
     width: calc(
       100% / 5 - 20px
     ); /* Taille des annonces pour 5 annonces par ligne */
-    margin-right: 20px; /* Marge droite des annonces */
-    margin-bottom: 20px; /* Marge en bas des annonces */
+    margin-right: 20px;
+    margin-bottom: 20px;
   }
   /*Map leaflet */
   #map {

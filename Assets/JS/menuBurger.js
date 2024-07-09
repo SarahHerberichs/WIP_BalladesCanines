@@ -1,4 +1,3 @@
-alert("ok");
 document.addEventListener("DOMContentLoaded", function () {
   // On récupère le bouton et le menu
   let boutonBurger = document.querySelector(".boutonBurger");

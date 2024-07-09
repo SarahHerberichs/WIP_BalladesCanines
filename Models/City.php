@@ -1,4 +1,6 @@
 <?php
+
+namespace Models;
 //  `city_id` int NOT NULL AUTO_INCREMENT,
 //  `name` varchar(255) NOT NULL,
 //  `latitude` decimal(9,6) DEFAULT NULL,

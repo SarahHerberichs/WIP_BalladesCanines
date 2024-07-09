@@ -6,7 +6,7 @@
             <?php if($_SERVER['REQUEST_URI'] !=="/index.php?page=register"): ?>
                 <i class="fa-solid fa-user-large green"></i>
                 <div class="dropdown-content">
-                    <form id= 'logoutForm' action="Controllers/header_ctrl.php" method="POST">
+                    <form id= 'logoutForm' action="Controllers/users/logout_ctrl.php" method="POST">
                         <input type="submit" name="logout" value='logout'>
                         <a href="#">Réglages</a>
                     </form>

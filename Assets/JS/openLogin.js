@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  alert("ok");
   const loginPopUp = document.querySelector(".login-page");
   const userMsgs = document.querySelectorAll(".error-msg");
   const btnClose = document.querySelector(".close-login");

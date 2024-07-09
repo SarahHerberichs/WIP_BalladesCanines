@@ -1,3 +1,3 @@
 <?php
 
-require '../Vues/hikes/post_hike.phtml';
+require 'Vues/hikes/post_hike.phtml';

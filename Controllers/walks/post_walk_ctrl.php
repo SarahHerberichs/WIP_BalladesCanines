@@ -16,12 +16,12 @@ if (isset($_SESSION['User']) && !empty($_SESSION['User'])) {
     $walk->setText(($_POST['text']));
     $walk->setTitle(($_POST['title']));
     $walk->setTime($_POST['time']);
-    $cityId = $walkRepo->getCityId(($_POST['cityNameSearch']), $_POST['zipcode']);
+    $cityId = $walkRepo->getCityId(($_POST['cityName']), $_POST['zipcode']);
     $walkRepo->insertWalk($walk, $cityId);
-
+    var_dump($walk);
     $queryString = $_SERVER['QUERY_STRING'];
-// Analyse de la QUERY_STRING pour extraire les paramètres existants
-parse_str($queryString, $params);
+    // Analyse de la QUERY_STRING pour extraire les paramètres existants
+    parse_str($queryString, $params);
 
 // Ajout ou modification du paramètre 'message_sent' à 1 dans les paramètres
 $params['walk_sent'] = 1;

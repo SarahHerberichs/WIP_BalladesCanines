@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const citiesJsonUrl = "Assets/cities.json";
 
   const departmentSelect = document.getElementById("department");
-  const citySearchInput = document.getElementById("cityNameSearch");
+  const citySearchInput = document.getElementById("citySearch");
   const cityResultsDiv = document.getElementById("cityResults");
   const cityZipcode = document.getElementById("zipcode");
+  const cityName = document.getElementById("cityName");
 
   let citiesData = []; // Stockage des données des villes
 
@@ -58,13 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       results.forEach((city) => {
         const li = document.createElement("li");
-        li.textContent = city.label;
+        li.textContent = city.label + "-" + city.zip_code;
 
         li.addEventListener("click", function () {
           console.log(city.zip_code);
-          citySearchInput.value = city.label;
+          citySearchInput.value = city.label + "-" + city.zip_code;
+          cityName.value = city.label;
           cityZipcode.value = city.zip_code;
-          console.log(citySearchInput);
+
           cityResultsDiv.classList.add("invisible");
           cityResultsDiv.innerHTML = "";
         });

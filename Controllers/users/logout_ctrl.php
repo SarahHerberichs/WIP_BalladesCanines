@@ -1,11 +1,14 @@
 <?php
-// Détruit toutes les variables de session
-$_SESSION = array();
-echo('coucou ctrl');
-// Détruit la session côté serveur
-// session_destroy();
+session_start();
 
-// // Redirige vers la page d'accueil par exemple
-// header("?page=home"); // Assurez-vous de rediriger vers la bonne page
-// exit();
+if (isset ($_POST['logout'])) {
+
+$_SESSION = array();
+
+// Détruit la session côté serveur
+session_destroy();
+
+// Redirige vers la page d'accueil 
+header('Location: ../../index.php');exit();
+}
 ?>

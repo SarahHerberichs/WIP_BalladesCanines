@@ -14,9 +14,9 @@ class Walk {
     private string $_userName;
     private int $_regionId;
     private array $_conversation;
-    private string $_time; // Changement en string
+    private DateTime $_time; // Changement en string
     private DateTime $_date;
-    private DateTime $created_at;
+    private DateTime $_created_at;
 
     private float $latitude;
     private float $longitude;
@@ -24,25 +24,30 @@ class Walk {
     public function setCreatedAt($created_at): void {
         if (is_string($created_at)) {
             try {
-                $this->created_at = new DateTime($created_at);
+                $this->_created_at = new DateTime($created_at);
             } catch (Exception $e) {
                 echo "Erreur de conversion de la date de création : " . $e->getMessage();
             }
         } elseif ($created_at instanceof DateTime) {
-            $this->created_at = $created_at;
+            $this->_created_at = $created_at;
+        } else {
+            echo "Format de date de création invalide";
+        }
+    }
+    public function setTime($time): void {
+        if (is_string($time)) {
+            try {
+                $this->_time = new DateTime($time);
+            } catch (Exception $e) {
+                echo "Erreur de conversion de la date de création : " . $e->getMessage();
+            }
+        } elseif ($time instanceof DateTime) {
+            $this->_time = $time;
         } else {
             echo "Format de date de création invalide";
         }
     }
 
-    public function setTime(string $time): void { // Changement en string
-        $timeParts = explode(':',$time);
-        if (count($timeParts) >= 2) {
-            $this->_time = $timeParts[0] . 'h' . $timeParts[1];
-        } else {
-            $this->_time = $time; // In case the format is incorrect, store as is
-        }
-    }
 
     public function setConversation($conversation): void {
         $this->_conversation = $conversation;
@@ -97,11 +102,11 @@ class Walk {
     }
 
     public function getCreatedAt(): DateTime {
-        return $this->created_at;
+        return $this->_created_at;
     }
 
     public function getTime(): string {
-        return $this->_time;
+        return $this->_time->format('H:i:s');
     }
 
     public function getConversation(): array {
