@@ -2,7 +2,7 @@
 let boutonBurger = document.querySelector(".boutonBurger");
 let menuBurger = document.querySelector(".menuBurger");
 
-// On récupère les spans du menu Hamburger
+// Récupère les spans du menu Hamburger
 let span1 = document.querySelector(".span1");
 let span2 = document.querySelector(".span2");
 let span3 = document.querySelector(".span3");
