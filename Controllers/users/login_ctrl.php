@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accountSubmit'])) {
                     $_SESSION['User'] = [
                         'id' => $userLog->getId(),
                         'name' => $userLog->getName(),
+                        'email' =>$userLog->getEmail()
                     ];
                     echo "<script>window.location.href = window.location.href.split('?')[0] ;</script>";
                    

@@ -1,5 +1,5 @@
 <?php
-namespace Controllers\header;
+namespace Controllers;
 
 // // session_start();
 

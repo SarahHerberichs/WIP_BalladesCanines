@@ -1,0 +1,31 @@
+
+<form action="" method="POST">
+
+<?php echo($errorPassword) ?> </br>
+<?php echo($errorConfirmPwd) ?>
+<?php echo($messageSuccess) ?>
+    <div>
+        <label for="name">Name</label>
+        <input type="text" value=<?= $user->getName() ?> name="name">
+        <label for="email"></label>
+        <input type="text" value=<?= $user->getEmail() ?> name="email">
+        <label for="phone">Name</label>
+        <input type="text" value=<?= $user->getPhone() ?> name="phone">
+
+    </div>
+    <div>   
+     
+    <label for="old_password">Password:</label>
+    <input type="text" value="" name="old_password">
+      <label for="new_password">New Password:</label>
+      <input type="password" id="new_password" name="new_password">
+      <label for="confirm_new_password">Confirm New Password:</label>
+      <input type="password" id="confirm_new_password" name="confirm_new_password">
+      <?php if (!empty($userMessages['requiredPassword'])): ?>
+        <p class='error-msg'><?= htmlspecialchars($userMessages['requiredPassword']) ?></p>
+      <?php endif; ?>
+    </div>
+    <input type="submit" name="updateAccountSubmit" value="Login">
+
+</form>
+  

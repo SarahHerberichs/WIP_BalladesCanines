@@ -7,9 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const cityZipcode = document.getElementById("zipcode");
   const cityName = document.getElementById("cityName");
 
-  let citiesData = []; 
+  let citiesData = [];
 
-  /
   function loadCitiesJson() {
     return fetch(citiesJsonUrl)
       .then((response) => response.json())

@@ -15,9 +15,9 @@ $page = isset ($_GET['page'])? $_GET['page'] : 'home';
         case 'consult_walks':
             require 'Controllers/walks/consult_walks_ctrl.php';
             break;
-            case 'consult_parcs':
-                require 'Controllers/parcs/consult_parcs_ctrl.php';
-                break;
+        case 'consult_parcs':
+            require 'Controllers/parcs/consult_parcs_ctrl.php';
+            break;
         case 'consult_hikes':
             require 'Controllers/hikes/consult_hikes_ctrl.php';
             break;
@@ -30,7 +30,12 @@ $page = isset ($_GET['page'])? $_GET['page'] : 'home';
         case 'login':
             require 'Controllers/users/login_ctrl.php';
             break;
-        
+        case 'manage_account':
+            require 'Controllers/users/manage_account_ctrl.php';
+            break;
+        case 'manage_ads':
+            require 'Controllers/users/manage_ads_ctrl.php';
+            break;
         default:
             require 'Controllers/home_ctrl.php';
     }
