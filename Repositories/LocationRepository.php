@@ -2,6 +2,7 @@
 
 namespace Repositories;
 use PDO;
+use Models\Region;
 
 class LocationRepository {
     private PDO $_connexion;
@@ -82,6 +83,22 @@ class LocationRepository {
           $stmt->execute();
       }
 
+    }
+/* Pour affichage de toutes les regions */
+    public function getRegions(): array {
+        $stmt = $this-> _connexion->prepare ('
+        SELECT * from regions
+        ');
+        $stmt->execute();
+        $regions = [];
+
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $region = new Region();
+            $region->setId($row['region_id']);
+            $region->setName($row['name']);
+            array_push($regions,$region);
+        }
+        return $regions;
     }
   
 }

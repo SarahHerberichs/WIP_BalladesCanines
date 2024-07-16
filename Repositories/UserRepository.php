@@ -5,7 +5,7 @@ namespace Repositories;
 use PDO;
 use Models\User;
 use Exception;
-
+use Models\Hike;
 class UserRepository {
     private PDO $_connexion;
 
@@ -92,5 +92,36 @@ class UserRepository {
         $stmt->bindValue('phone', $user->getPhone());
         $stmt->execute();
         return $user;
+    }
+
+    public function getPostedHikeByUser($userId) : array {
+      $stmt= $this->_connexion->prepare('
+      SELECT * FROM hikes where user_id = :userId
+      ');
+     
+      $stmt->bindValue('userId', $userId);
+      $stmt->execute();
+      $hikeList = [];
+      while ($row =$stmt->fetch(PDO::FETCH_ASSOC)) {
+        $hikeId = $row['hike_id'];
+        if (!isset($hikeList[$hikeId])) {
+          $hike = new Hike();
+          $hike->setHikeId($row['hike_id']);
+          $hike->setCityId($row['city_id']);
+          $hike->setTitle($row['title']);
+          $hike->setText($row['text']);
+          $hike->setElevationGain($row['elevation_gain']);
+          $hike->setDistance($row['distance']);
+          $hike->setEncounteredDifficulties($row['encountered_difficulties']);
+          $hike->setWaterPoint($row['water_point']);
+          $hike->setHikeDate($row['hike_date']);
+          $hike->setCreatedAt($row['created_at']);
+          $hike->setUpdatedAt($row['updated_at']);
+          $hike->setRegionId($row['region_id']);;
+          $hike->setLevel($row['level']);
+          $hikeList[$hikeId] = $hike;
+        }
+      }
+      return array_values($hikeList);
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
-namespace Controllers\walks\postWalks;
-
+namespace Controller;
 use Repositories\WalkRepository;
 use Models\Walk;
 
@@ -18,7 +17,7 @@ if (isset($_SESSION['User']) && !empty($_SESSION['User'])) {
     $walk->setTime($_POST['time']);
     $cityId = $walkRepo->getCityId(($_POST['cityName']), $_POST['zipcode']);
     $walkRepo->insertWalk($walk, $cityId);
-    var_dump($walk);
+
     $queryString = $_SERVER['QUERY_STRING'];
     // Analyse de la QUERY_STRING pour extraire les paramètres existants
     parse_str($queryString, $params);

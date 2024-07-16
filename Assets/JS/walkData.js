@@ -36,8 +36,17 @@ function mapLeaflet() {
     attribution: "&copy; OpenStreetMap contributors",
   }).addTo(map);
 
+  var walkIcon = L.icon({
+    iconUrl: "../../Files/images/baskets.png",
+    iconSize: [20, 33],
+    iconAnchor: [10, 33],
+    popupAnchor: [1, -30],
+  });
+
   walkData.forEach((walk) => {
-    var marker = L.marker([walk.latitude, walk.longitude]).addTo(map);
+    var marker = L.marker([walk.latitude, walk.longitude], {
+      icon: walkIcon,
+    }).addTo(map);
     marker.bindPopup(
       "<b>" +
         decodeHTMLEntities(walk.title) +
@@ -47,12 +56,12 @@ function mapLeaflet() {
         "à :" +
         walk.time +
         "<br>" +
+        "Localisation:" +
+        walk.cityName +
+        "<br>" +
         "<a href='#' class='selected-walk-link' data-walk-id='" +
         walk.id +
-        "'>voir plus</a>" +
-        "<br>" +
-        "Localisation:" +
-        walk.cityName
+        "'>voir plus</a>"
     );
   });
 }
@@ -94,6 +103,7 @@ function scrollX() {
 
 function popUpwalkClicked(walkId, walkList) {
   let titleWalkClicked = document.querySelector(".title-walkClicked");
+  let userWalkClicked = document.querySelector(".user");
   let textWalkClicked = document.querySelector(".text-walkClicked");
   let cityWalkClicked = document.querySelector(".city-walkClicked");
   let timeWalkClicked = document.querySelector(".time");
@@ -104,30 +114,45 @@ function popUpwalkClicked(walkId, walkList) {
   let btnClose = document.querySelector(".close-walkClicked");
 
   titleWalkClicked.textContent = "Titre : ";
-  textWalkClicked.textContent = "Annonce : ";
-  cityWalkClicked.textContent = "Localisation :";
-  timeWalkClicked.textContent = "à :";
-  dateWalkClicked.textContent = "Le : ";
+  userWalkClicked.innerHTML =
+    "<img src='../Files/images/user.png' alt='user-img' class='walk-details-img'/>" +
+    ": ";
+  textWalkClicked.textContent = "Annonce: ";
+  cityWalkClicked.innerHTML =
+    "<img src='../Files/images/gps.png' alt='gps-img' class='walk-details-img'/>" +
+    ": ";
+  timeWalkClicked.innerHTML =
+    "<img src='../Files/images/lhorloge.png' alt='horloge-img' class='walk-details-img'/>" +
+    ": ";
+  dateWalkClicked.innerHTML =
+    "<img src='../Files/images/calendrier.png' alt='date-img' class='walk-details-img'/>" +
+    ": ";
   conversationList.innerHTML = "";
 
-  inputHidden.value = "";
+  if (inputHidden) {
+    inputHidden.value = "";
+  }
 
   conversationList.innerHTML = "";
 
   for (let i = 0; i < walkList.length; i++) {
     if (walkList[i].id == walkId) {
       titleWalkClicked.textContent += decodeHTMLEntities(walkList[i].title);
-      dateWalkClicked.textContent += formatDate(walkList[i].date);
-      timeWalkClicked.textContent += walkList[i].time;
+      userWalkClicked.innerHTML += walkList[i].user;
+      dateWalkClicked.innerHTML += formatDate(walkList[i].date);
+      timeWalkClicked.innerHTML += walkList[i].time;
       textWalkClicked.textContent += decodeHTMLEntities(walkList[i].text);
-      cityWalkClicked.textContent += decodeHTMLEntities(walkList[i].cityName);
-      inputHidden.value = walkId;
+      cityWalkClicked.innerHTML += decodeHTMLEntities(walkList[i].cityName);
+      if (inputHidden) {
+        inputHidden.value = walkId;
+      }
 
       let conversations = walkList[i].conversations.slice();
       conversations.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       for (let y = 0; y < conversations.length; y++) {
         let text = decodeHTMLEntities(conversations[y].text);
+
         let postedAt = conversations[y].date;
         let user = decodeHTMLEntities(conversations[y].user);
 
@@ -135,13 +160,20 @@ function popUpwalkClicked(walkId, walkList) {
         conversationMsg.classList.add("conversation-msg");
 
         let conversationText = document.createElement("p");
-        conversationText.textContent = text;
+        conversationText.innerHTML =
+          "<img src='../Files/images/citation.png' alt='citation-img' class='walk-details-img'/>";
+
+        conversationText.innerHTML += text;
+        conversationText.classList.add("conversation-text");
 
         let conversationDate = document.createElement("p");
-        conversationDate.textContent = "Posted at: " + postedAt;
+        conversationDate.textContent = "Posté à: " + postedAt;
 
         let conversationUser = document.createElement("p");
-        conversationUser.textContent = "User: " + user;
+        conversationUser.innerHTML =
+          "<img src='../Files/images/user.png' alt='user-img' class='walk-details-img'/>" +
+          ": " +
+          user;
 
         conversationMsg.appendChild(conversationDate);
         conversationMsg.appendChild(conversationUser);

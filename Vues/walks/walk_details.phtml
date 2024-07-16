@@ -3,13 +3,21 @@
 <!-- Au click sur une walk, affichage des détails de la walk + possibilité de conversation -->
 <div class="popup-walkClicked">
     <button class='btn-close close-walkClicked'>Close</button>
-    <h3 class = "title-walkClicked"></h3>
+    <h3 class = "title-walkClicked"></h3> 
+    
+    <p class="user"></p>
     <p class='date'></p>
     <p class='time'></p>
-    <p class = "text-walkClicked"></p>
     <p class = "city-walkClicked"></p>
-    <div class="conversation">
-        <?php require 'Controllers/walks/post_message_ctrl.php' ?>
+    <p class = "text-walkClicked"></p>
+
+    <div class="conversation conversation-walkClicked">
+        <h3>Conversation</h3>
+        <?php if (isset($_SESSION["User"])) : ?>
+            <?php require 'Controllers/walks/post_message_ctrl.php'; ?>
+        <?php else: ?>
+            <p class="error-msg">Veuillez vous connecter pour participer au chat</p>
+        <?php endif; ?>
         <div class="conversation-list"></div>
     </div>
 
@@ -19,6 +27,7 @@
  var walkData = <?= json_encode(array_map(function ($walk) {
     return [
         'id' => $walk->getWalkId(),
+        'user' => $walk->getUserName(),
         'title' => htmlspecialchars($walk->getTitle()),
         'latitude' => $walk->getLatitude(),
         'longitude' => $walk->getLongitude(),

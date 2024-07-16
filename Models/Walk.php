@@ -14,7 +14,7 @@ class Walk {
     private string $_userName;
     private int $_regionId;
     private array $_conversation;
-    private DateTime $_time; // Changement en string
+    private string $_time; 
     private DateTime $_date;
     private DateTime $_created_at;
 
@@ -36,15 +36,14 @@ class Walk {
     }
     public function setTime($time): void {
         if (is_string($time)) {
-            try {
-                $this->_time = new DateTime($time);
-            } catch (Exception $e) {
-                echo "Erreur de conversion de la date de création : " . $e->getMessage();
+            // Vérifier si la chaîne de temps est au format 'HH:MM'
+            if (preg_match('/^\d{2}:\d{2}$/', $time)) {
+                $this->_time = $time; // Assigner la chaîne directement
+            } else {
+                echo "Format d'heure invalide. Utilisez le format HH:MM.";
             }
-        } elseif ($time instanceof DateTime) {
-            $this->_time = $time;
         } else {
-            echo "Format de date de création invalide";
+            echo "Format d'heure invalide. Utilisez une chaîne au format HH:MM.";
         }
     }
 
@@ -106,7 +105,7 @@ class Walk {
     }
 
     public function getTime(): string {
-        return $this->_time->format('H:i:s');
+        return $this->_time;
     }
 
     public function getConversation(): array {
@@ -138,7 +137,7 @@ class Walk {
     }
 
     public function getCityName(): string {
-        return $this->_cityName;
+        return ucfirst(strtolower($this->_cityName));
     }
 
     public function getDate(): DateTime {

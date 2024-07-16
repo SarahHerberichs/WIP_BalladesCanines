@@ -5,22 +5,41 @@
 <div class="popup">
     <button class='btn-close close-postHike'>close</button>
     <?php if (isset($_SESSION['User']) && !empty($_SESSION['User'])): ?>
-        <form action="" method="POST" class="form-post-hike">
+        <form action="" method="POST" class="form-post-ad">
             <input type="text" name="title" placeholder="Titre de l'annonce" required>
-            <input type="date" id="hike-date" name="date" placeholder="Date de l'annonce" required>
-            <input type="time" id="hike-time" name="time" placeholder="Heure de l'annonce" required>
-            <input type="number" id="hike-elevation" name = "elevation" required placeholder="dénivelé"/>
-            <input type="number" id="hike-distance" name = "distance" required placeholder="distance"/>
+            <input type="date" id="hike-date" name="hike_date" placeholder="Date de la rando" required>
+            <input type="number" id="hike-elevation" name = "elevation_gain" required placeholder="Dénivelé"/>
+            <input type="number" id="hike-distance" name = "hike_distance" required placeholder="Distance"/>
 
-            <input type="text" id="hike-dificulties" name="dificulties" />
+            <textarea id="hike-difficulties" name="hike_difficulties" placeholder="Difficultées rencontrées"></textarea>
             
-
             <!--Point d'eau -->
-            <p>Point d'eau?</p>
-            <input type="radio" id="yes" name="water_point" value="yes">
-            <label for="yes">Oui</label><br>
-            <input type="radio" id="no" name="water_point" value="no">
-            <label for="no">Non</label><br>
+            <fieldset>
+                <legend>Point d'eau?</legend>
+                <div>
+                    <input type="radio" id="yes" name="water_point" value="yes">
+                    <label for="yes">Oui</label><br>
+                </div>
+                <div>
+                    <input type="radio" id="no" name="water_point" value="no">
+                    <label for="no">Non</label><br>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Niveau de difficulté</legend>
+                <div>
+                    <input type="radio" id="1" name="hike_level" value = "1">
+                    <label for="1">Facile</label>
+                </div>
+                <div>
+                    <input type="radio" id="2" name="hike_level" value = "2">
+                    <label for="2">Moyen</label>
+                </div>
+                <div>
+                    <input type="radio" id="3" name="hike_level" value = "3">
+                    <label for="3">Dififcile</label>
+                </div>
+            </fieldset>
 
             <textarea name="text" placeholder="Texte de l'annonce" rows="8" required></textarea>
             
@@ -33,5 +52,5 @@
         <p> Merci de vous <a href='?page=login'>connecter</a> ou de  <a href='?page=register'>créer un compte</a> </p>
     <?php endif; ?>
 </div>
-
-
+<script src="../../Assets/JS/postHike.js"></script>
+<script src="../../Assets/JS/errorOrSucces.js"></script>

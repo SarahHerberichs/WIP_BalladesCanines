@@ -1,4 +1,50 @@
 
 <?php require 'Controllers/walks/consult_walks_ctrl.php' ?>
- 
+<?php require 'Controllers/hikes/consult_hikes_ctrl.php'; ?>
+
+<div id="map"></div>
+
+<script>
+ var walkData = <?= json_encode(array_map(function ($walk) {
+    return [
+        'type' => "walk",
+        'id' => $walk->getWalkId(),
+        'title' => htmlspecialchars($walk->getTitle()),
+        'latitude' => $walk->getLatitude(),
+        'longitude' => $walk->getLongitude(),
+        'date' => $walk->getDate()->format('d F Y '),
+        'text' => htmlspecialchars($walk->getText()),
+        'cityName' => $walk->getCityName(),
+        'region' => $walk->getRegionId(),
+        'time' => $walk->getTime(),
+        'conversations' => array_map(function ($conversation) {
+            return [
+                'id' => $conversation->getConversationId(),
+                'text' => htmlspecialchars($conversation->getText()),
+                'date' => $conversation->getDate()->format('d F Y'),
+                'user' => htmlspecialchars($conversation->getUserName())
+            ];
+        }, $walk->getConversation())
+    ];
+}, $walkList),JSON_UNESCAPED_UNICODE); ?>;
+
+var hikeData = <?= json_encode(array_map(function ($hike) {
+    return [
+        'type' => "hike",
+        'id' => $hike->getHikeId(),
+        'title' => htmlspecialchars($hike->getTitle()),
+        'latitude' => $hike->getLatitude(),
+        'longitude' => $hike->getLongitude(),
+        'date' => $hike->getHikeDate()->format('d F Y '),
+        'text' => htmlspecialchars($hike->getText()),
+        'cityName' => $hike->getCityName(),
+        'region' => $hike->getRegionId(),
+    ];
+}, $hikeList),JSON_UNESCAPED_UNICODE); ?>;
+
+var combinedData = walkData.concat(hikeData);
+</script>
+
+<!-- Injecter map contenant les Randos ET les Marches -->
 <script src="../Assets/JS/index.js"></script>
+<script src="../Assets/JS/adData.js"></script> <!-- Fichier JavaScript pour l'initialisation de la carte -->

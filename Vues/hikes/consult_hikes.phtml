@@ -1,1 +1,30 @@
-Randos
+
+<!-- SEULEMENT SI PAGE CONSULTHIKES - PAS HOME -->
+<?php if(isset($_GET['page']) && $_GET['page'] != "home"): ?>
+    <a href="#" class='post-ad-link'>Proposer une rando</a>
+    <!-- Proposer un RDV -->
+    <div class="post-ad-box invisible">
+        <?php require 'Controllers/hikes/post_hike_ctrl.php'; ?> 
+    </div>
+<?php endif; ?>
+
+<h3>Randonnées </h3>
+<!-- Liste des prochains Walk -->
+<?php require 'hike_list.phtml'; ?>
+
+<!-- SEULEMENT SI PAGE CONSULTWALKS - PAS HOME -->
+<?php if(isset($_GET['page']) && $_GET['page'] != "home"): ?>
+    <!-- Affichage de la liste des régions -->
+    <?php require __DIR__ . '/../location/region_list.phtml'; ?>
+<?php endif; ?>
+
+<!-- Si pas home, Map avec les marches prevues-->
+<?php if(isset($_GET['page']) && $_GET['page'] != "home"): ?>
+    <div id="map"></div>
+    <!-- Popup de l'annonce cliquée -->
+    <?php require 'hike_details.phtml'; ?>
+    <!-- SINON , map avec le melange des rando et marches -->
+<?php endif; ?>
+
+<script src="../../Assets/JS/postAd.js"></script>
+<script src="../Assets/JS/hikeData.js"></script> <!-- Fichier JavaScript pour l'initialisation de la carte -->

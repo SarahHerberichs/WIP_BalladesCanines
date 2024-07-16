@@ -5,7 +5,7 @@
 <div class="popup">
     <button class='btn-close close-postWalk' >close</button>
     <?php if (isset($_SESSION['User']) && !empty($_SESSION['User'])): ?>
-        <form action="" method="POST" class="form-post-walk">
+        <form action="" method="POST" class="form-post-ad" id="form-walk">
             <input type="text" name="title" placeholder="Titre de l'annonce" required>
             <input type="date" id="walk-date" name="date" placeholder="Date de l'annonce" required>
             <input type="time" id="walk-time" name="time" placeholder="Heure de l'annonce" required>
@@ -20,5 +20,4 @@
         <p> Merci de vous <a href='?page=login'>connecter</a> ou de  <a href='?page=register'>créer un compte</a> </p>
     <?php endif; ?>
 </div>
-
 

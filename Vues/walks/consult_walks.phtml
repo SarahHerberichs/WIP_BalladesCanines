@@ -2,14 +2,17 @@
 
 <!-- SEULEMENT SI PAGE CONSULTWALKS - PAS HOME -->
 <?php if(isset($_GET['page']) && $_GET['page'] != "home"): ?>
-    <a href="#" class='post-walk-link'>Proposer un RDV</a>
+    <a href="#" class='post-ad-link'>Proposer un RDV</a>
     <!-- Proposer un RDV -->
-    <div class="post-walk-box invisible">
+    <div class="post-ad-box invisible">
         <?php require 'Controllers/walks/post_walk_ctrl.php'; ?> 
     </div>
 <?php endif; ?>
-
+<section class="validation_or_error">
+    <div id="success-message"></div>
+</section>
 <h3>RDVS Marches</h3>
+
 <!-- Liste des prochains Walk -->
 <?php require 'walk_list.phtml'; ?>
 
@@ -19,16 +22,13 @@
     <?php require __DIR__ . '/../location/region_list.phtml'; ?>
 <?php endif; ?>
 
-<!-- SEULEMENT SI PAGE HOME - PAS CONSULTWALKS -->
-<?php if(isset($_GET['page']) && $_GET['page'] == "home"): ?>
-    <h3>Répertoire de randos</h3>
-    <!-- Contenu spécifique pour la page Home -->
-    ...A suivre ...
+<!-- Si pas home, Map avec les marches prevues-->
+<?php if(isset($_GET['page']) && $_GET['page'] != "home"): ?>
+    <div id="map"></div>
+    <!-- Popup de l'annonce cliquée -->
+    <?php require 'walk_details.phtml'; ?>
+    <!-- SINON , map avec le melange des rando et marches -->
 <?php endif; ?>
 
-<div id="map"></div>
-<!-- Popup de l'annonce cliquée -->
-<?php require 'walk_details.phtml'; ?>
-
-<script src="../../Assets/JS/postWalk.js"></script>
-<script src="../Assets/JS/index.js"></script> <!-- Fichier JavaScript pour l'initialisation de la carte -->
+<script src="../../Assets/JS/postAd.js"></script>
+<script src="../Assets/JS/walkData.js"></script> <!-- Fichier JavaScript pour l'initialisation de la carte -->

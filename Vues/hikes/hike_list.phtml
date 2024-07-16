@@ -1,0 +1,30 @@
+<div id='hike-list'>
+    <?php
+        $count = 0;
+        foreach($hikeList as $hike) :
+    
+            ?>
+            <div class="hike">
+                <h3><?= $hike->getTitle() ?></h3>
+                <p>Rando du:<b><?= $hike->getHikeDate()->format('d F Y') ?></b></p>
+
+                <p> Ville : <?= $hike->getCityName() ?> </p>
+             
+                <p>Postée le : <?= htmlspecialchars($hike->getCreatedAt()->format('d F Y')) ?></p>    
+                <p>Par : <?= $hike->getUserName() ?></p> 
+                <?php
+                    $difficulty = $hike->getLevel();
+                    $difficultyClass = 'difficulty-' . $difficulty;
+                    ?>
+
+                    <div class="progress-bar <?= $difficultyClass ?>">
+                        <span class="progress-bar-fill"></span>
+                    </div>
+                    <p>Difficulté : <?= $difficulty ?></p>
+            </div>
+        <?php
+        $count++;
+        endforeach;
+    ?>
+      
+    </div>

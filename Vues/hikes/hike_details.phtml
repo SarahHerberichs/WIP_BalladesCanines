@@ -1,0 +1,45 @@
+<!--INJECTE EN JS -->
+
+<!-- Au click sur une hike, affichage des détails de la hike + possibilité de conversation -->
+<div class="popup-hikeClicked">
+    <button class='btn-close close-hikeClicked'>Close</button>
+    <h3 class = "title-hikeClicked"></h3>
+    <p class='username-hikeClicked'></p>
+    <p class='createdAt-hikeClicked'></p>
+    
+    <p class='elevationGain-hikeClicked'></p>
+    <p class='level-hikeClicked'></p>
+    <p class='distance-hikeClicked'></p>
+    
+    <p class='waterPoint-hikeClicked'></p>
+   
+    <p class='date'></p>
+    <p class = "city-hikeClicked"></p>
+
+    <p class='text-hikeClicked'></p>
+    <p class='encounteredDifficulties-hikeClicked'></p>
+    
+</div>
+ 
+    <script>
+ var hikeData = <?= json_encode(array_map(function ($hike) {
+    return [
+        'id' => $hike->getHikeId(),
+        'title' => htmlspecialchars($hike->getTitle()),
+        'createdAt' => $hike->getCreatedAt(),
+        'text' => htmlspecialchars($hike->getText()),
+        'elevationGain' =>$hike->getElevationGain(),
+        'level' => $hike->getLevel(),
+        'distance' => $hike->getDistance(),
+        'encounteredDifficulties'=> $hike->getEncounteredDifficulties(),
+        'waterPoint' => $hike->getWaterPoint(),
+        'date' => $hike->getHikeDate()->format('d F Y '),
+        'cityName' => $hike->getCityName(),
+        'userName'=> htmlspecialchars($hike->getUserName()),
+        'latitude' => $hike->getLatitude(),
+        'longitude' => $hike->getLongitude(),
+        'region' => $hike->getRegionId(),
+        
+    ];
+}, $hikeList),JSON_UNESCAPED_UNICODE); ?>;
+</script>

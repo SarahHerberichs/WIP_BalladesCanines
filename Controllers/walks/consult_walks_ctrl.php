@@ -1,28 +1,20 @@
 <?php
-namespace Controllers\walks\consultWalks;
+namespace Controllers;
 
 use Exception;
 use Models\WalkConversation;
 use Repositories\WalkRepository;
 use Repositories\WalkConversationRepository;
+use Repositories\LocationRepository;
 
 $walkRepo = new WalkRepository();
 $convRepo = new WalkConversationRepository();
-
-if (isset($_POST['msg_conversation'])){
-  
-
-    $conversation = new WalkConversation();
-
-    $conversation->setWalkId($_POST['walk_id']);
-    $conversation->setText($_POST['message']);
-    $convRepo->insertMessage($conversation,$_POST['walk_id']);
-    //recup walkId et text
-}
+$locationRepo = new LocationRepository();
 
 
 //Pour affichage de toutes les régions qui seront clickable pour filtrer walks par région(injection url js)
-$regions = $walkRepo->getRegions();
+$regions = $locationRepo->getRegions();
+
 $regions_id = [];
 //Tableau de tous les Id region
 foreach ($regions as $region) {
